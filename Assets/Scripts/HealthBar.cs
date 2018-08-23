@@ -9,13 +9,13 @@ public class HealthBar : MonoBehaviour {
     Vector3 localScale;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
         monster = monsterObject.GetComponent<Monster>();
         localScale = transform.localScale;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
         int currentHealth = (100 * monster.health) / monster.maxHealth;
 
 		localScale.x = currentHealth < 0 ? 0 : currentHealth;

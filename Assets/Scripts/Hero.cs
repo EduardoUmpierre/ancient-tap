@@ -6,13 +6,14 @@ public class Hero : MonoBehaviour {
     public static int level = 1;
     public static int damagePerClick = 1;
     public static int damagePerSecond = 1;
+    public static int coins = 0;
 
     MonsterSpawner monsterSpawner;
     Monster monsterComponent;
     GameObject monster;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
         monster = GameObject.FindGameObjectsWithTag("Enemy")[0];
         monsterComponent = monster.GetComponent<Monster>();
 		monsterSpawner = GameObject.Find("Spawner").GetComponent<MonsterSpawner>();
@@ -20,11 +21,6 @@ public class Hero : MonoBehaviour {
         // Invokes the DPS function
         InvokeRepeating("HitPerSecond", 0, 1.0f);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     // Deals damage per click based on the "damagePerClick" variable
     public void Hit()
@@ -42,10 +38,11 @@ public class Hero : MonoBehaviour {
     private void Damage(int damage)
     {
         monsterComponent.health -= damage;
-        monsterComponent.showFloatingText(damage);
+        monsterComponent.ShowFloatingText(damage);
 
         if (monsterComponent.health > 0)
         {
+            // Hit animation
             Debug.Log(level + " - " + damage + "/" + monsterComponent.health);
         }
         else
@@ -54,8 +51,14 @@ public class Hero : MonoBehaviour {
 
             level += 1;
 
-            monster = monsterSpawner.spawnMob();
+            monster = monsterSpawner.SpawnMob();
             monsterComponent = monster.GetComponent<Monster>();
         }
+    }
+
+    // Increase the amount of coins
+    public void AddCoins(int amount)
+    {
+        coins += amount;
     }
 }

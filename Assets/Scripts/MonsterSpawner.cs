@@ -8,36 +8,31 @@ public class MonsterSpawner : MonoBehaviour {
     public GameObject minion;
     GameObject spawn;
 
-	// called zero
+	// Called zero
     void Awake()
     {
-        spawn = spawnMob();
+        spawn = SpawnMob();
     }
 
-    // called first
+    // Called first
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // called second
+    // Called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
     }
 
-    // called third
-    void Start()
-    {
-    }
-
-    // called when the game is terminated
+    // Called when the game is terminated
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Instantiate a new monster based on level
-    public GameObject spawnMob() {
+    public GameObject SpawnMob() {
         GameObject monster = Instantiate(Hero.level % 5 == 0 ? boss : minion, new Vector3(0, 1.15f, 0), Quaternion.identity, transform);
         monster.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
