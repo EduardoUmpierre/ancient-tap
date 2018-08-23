@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : MonoBehaviour {
-    Hero hero;
     public GameObject FloatingTextPrefab;
     public int health;
     public int maxHealth;
 
-	// Use this for initialization
-	void Start () {
+    Hero hero;
+
+    // Use this for initialization
+    void Start () {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
-        maxHealth = health = Hero.level * ((Hero.level % 5 == 0 ? 10 : 1) * 5);
+        maxHealth = health = Hero.level * ((Hero.level % 5 == 0 ? 5 : 1) * 5);
 	}
 	
 	// Update is called once per frame
@@ -19,8 +20,9 @@ public class Monster : MonoBehaviour {
 
 	}
 
+    // Receives damage at every click
     void OnMouseDown() {
-        hero.hit();
+        hero.Hit();
     }
 
     // Shows the Floating Text
@@ -39,6 +41,7 @@ public class Monster : MonoBehaviour {
                 color = new Color32(218, 0, 0, 255);
             }
 
+            // Creates the floating text
             var floatingText = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
             floatingText.GetComponent<TextMesh>().text = Hero.damagePerClick.ToString();
             floatingText.GetComponent<TextMesh>().color = color;

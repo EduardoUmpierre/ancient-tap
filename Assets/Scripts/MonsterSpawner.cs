@@ -36,7 +36,7 @@ public class MonsterSpawner : MonoBehaviour {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // 
+    // Instantiate a new monster based on level
     public GameObject spawnMob() {
         GameObject monster = Instantiate(Hero.level % 5 == 0 ? boss : minion, new Vector3(0, 1.15f, 0), Quaternion.identity, transform);
         monster.GetComponent<SpriteRenderer>().sortingOrder = 1;

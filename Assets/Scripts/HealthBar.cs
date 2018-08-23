@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour {
     public GameObject monsterObject;
+
     Monster monster;
     Vector3 localScale;
 
