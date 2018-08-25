@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour {
     public static int level = 1;
     public static int damagePerClick = 1;
-    public static int damagePerSecond = 1;
+    public int damagePerSecond = 1;
     public static int coins = 0;
 
     MonsterSpawner monsterSpawner;
@@ -60,5 +60,10 @@ public class Hero : MonoBehaviour {
     public void AddCoins(int amount)
     {
         coins += amount;
+    }
+
+    public void increaseDPS(int amount)
+    {
+        damagePerSecond += amount;
     }
 }
