@@ -49,7 +49,7 @@ public class Monster : MonoBehaviour {
 
         // Creates the floating text
         var floatingText = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
-        floatingText.GetComponent<TextMesh>().text = Hero.damagePerClick.ToString();
+        floatingText.GetComponent<TextMesh>().text = damage.ToString();
         floatingText.GetComponent<TextMesh>().color = color;
         floatingText.GetComponent<Renderer>().sortingOrder = 2;
     }

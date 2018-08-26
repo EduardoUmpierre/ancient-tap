@@ -62,6 +62,7 @@ public class Hero : MonoBehaviour {
         coins += amount;
     }
 
+    //
     public void increaseDPS(int amount)
     {
         damagePerSecond += amount;
