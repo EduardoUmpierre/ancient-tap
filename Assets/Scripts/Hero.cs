@@ -63,8 +63,31 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public void increaseDPS(int amount)
+    public bool Upgrade(string type, int amount, int cost)
     {
-        damagePerSecond += amount;
+        if (CanUpgrade(cost))
+        {
+            switch (type)
+            {
+                case "dps":
+                    damagePerSecond += amount;
+                    break;
+                case "dpc":
+                    damagePerClick += amount;
+                    break;
+            }
+
+            coins -= cost;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    //
+    private bool CanUpgrade(int cost)
+    {
+        return coins >= cost;
     }
 }

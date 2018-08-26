@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 public class MonsterSpawner : MonoBehaviour {
     public GameObject boss;
     public GameObject minion;
-    GameObject spawn;
 
 	// Called zero
     void Awake()
     {
-        spawn = SpawnMob();
+        SpawnMob();
     }
 
     // Called first
