@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     public static int level = 1;
-    public static int damagePerClick = 1;
-    public int damagePerSecond = 1;
     public static int coins = 0;
 
     MonsterSpawner monsterSpawner;
     Monster monsterComponent;
     GameObject monster;
 
-	// Use this for initialization
-	void Start() {
+    int damagePerSecond = 1;
+    int damagePerClick = 1;
+    float criticalChance = 0f;
+    float criticalDamage = 2f;
+    float goldBonus = 1f;
+
+    // Use this for initialization
+    void Start() {
         monster = GameObject.FindGameObjectsWithTag("Enemy")[0];
         monsterComponent = monster.GetComponent<Monster>();
 		monsterSpawner = GameObject.Find("Spawner").GetComponent<MonsterSpawner>();
@@ -37,8 +41,12 @@ public class Hero : MonoBehaviour {
     // Deals the damage to the monster and manage the monster respawn
     private void Damage(int damage)
     {
+        bool isCriticalHit = Random.Range(0f, 1f) > (100 - criticalChance) / 100;
+
+        damage *= isCriticalHit ? Mathf.CeilToInt(criticalDamage) : 1;
+
         monsterComponent.health -= damage;
-        monsterComponent.ShowFloatingText(damage);
+        monsterComponent.ShowFloatingText(damage, isCriticalHit);
 
         if (monsterComponent.health > 0)
         {
@@ -59,21 +67,30 @@ public class Hero : MonoBehaviour {
     // Increase the amount of coins
     public void AddCoins(int amount)
     {
-        coins += amount;
+        coins += Mathf.CeilToInt(amount * goldBonus);
     }
 
-    //
-    public bool Upgrade(string type, int amount, int cost)
+    // Upgrades the hero status
+    public bool Upgrade(string type, float amount, int cost)
     {
         if (CanUpgrade(cost))
         {
             switch (type)
             {
                 case "dps":
-                    damagePerSecond += amount;
+                    damagePerSecond += (int) amount;
                     break;
                 case "dpc":
-                    damagePerClick += amount;
+                    damagePerClick += (int) amount;
+                    break;
+                case "crit_chance":
+                    criticalChance *= amount;
+                    break;
+                case "crit_damage":
+                    criticalDamage *= amount;
+                    break;
+                case "gold_bonus":
+                    goldBonus *= amount;
                     break;
             }
 
@@ -85,9 +102,27 @@ public class Hero : MonoBehaviour {
         return false;
     }
 
-    //
+    // Verifies if the hero has the necessary coins amount to do the upgrade
     private bool CanUpgrade(int cost)
     {
         return coins >= cost;
+    }
+
+    //
+    public void IncreaseCriticalDamage(float amount)
+    {
+        criticalDamage += amount;
+    }
+
+    //
+    public void IncreaseCriticalChange(float amount)
+    {
+        criticalChance += amount;
+    }
+
+    //
+    public void IncreaseGoldBonus(float amount)
+    {
+        goldBonus += amount;
     }
 }
