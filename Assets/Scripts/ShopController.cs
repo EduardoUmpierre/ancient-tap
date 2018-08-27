@@ -5,18 +5,22 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class ShopController : MonoBehaviour {
+    public static Dictionary<string, Dictionary<string, float>> shopListItems = new Dictionary<string, Dictionary<string, float>>();
+
     Hero hero;
     GameObject dpsButton;
     GameObject dpcButton;
     GameObject critChanceButton;
     GameObject critDamageButton;
     GameObject goldBonusButton;
-    Dictionary<string, Dictionary<string, float>> shopListItems = new Dictionary<string, Dictionary<string, float>>();
 
     // Use this for initialization
     void Start ()
     {
-        SetUpShopListItems();
+        if (shopListItems.Count == 0)
+        {
+            SetUpShopListItems();
+        }
 
         hero = GameObject.Find("Hero").GetComponent<Hero>();
         dpsButton = GameObject.Find("Shop_01_DPS_button");
@@ -80,5 +84,19 @@ public class ShopController : MonoBehaviour {
         };
 
         return itemConfiguration;
+    }
+
+    //
+    public Dictionary<string, Dictionary<string, float>> GetShopListItems()
+    {
+        return shopListItems;
+    }
+
+    //
+    public void SetShopListItems(Dictionary<string, Dictionary<string, float>> items)
+    {
+        shopListItems = items;
+
+        Debug.Log(items.ToString());
     }
 }

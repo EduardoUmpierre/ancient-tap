@@ -13,7 +13,7 @@ public class MonsterSpawner : MonoBehaviour {
         SpawnMob();
 
         // Loads the game
-        // SaveLoad.Load();
+        SaveLoad.Load();
     }
 
     // Called first

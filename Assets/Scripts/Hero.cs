@@ -10,11 +10,11 @@ public class Hero : MonoBehaviour {
     Monster monsterComponent;
     GameObject monster;
 
-    int damagePerSecond = 0;
-    int damagePerClick = 1;
-    float criticalChance = 0f;
-    float criticalDamage = 2f;
-    float goldBonus = 1f;
+    public static int damagePerSecond = 0;
+    public static int damagePerClick = 1;
+    public static float criticalChance = 0f;
+    public static float criticalDamage = 2f;
+    public static float goldBonus = 1f;
 
     // Use this for initialization
     void Start() {
@@ -139,5 +139,65 @@ public class Hero : MonoBehaviour {
     private void IncreaseGoldBonus(float amount)
     {
         goldBonus *= amount;
+    }
+
+    //
+    public int GetDamagePerSecond()
+    {
+        return damagePerSecond;
+    }
+
+    //
+    public int GetDamagePerClick()
+    {
+        return damagePerClick;
+    }
+
+    //
+    public float GetCriticalChance()
+    {
+        return criticalChance;
+    }
+
+    //
+    public float GetCriticalDamage()
+    {
+        return criticalDamage;
+    }
+
+    //
+    public float GetGoldBonus()
+    {
+        return goldBonus;
+    }
+
+    //
+    public void SetDamagePerSecond(int amount)
+    {
+        damagePerSecond = amount;
+    }
+
+    //
+    public void SetDamagePerClick(int amount)
+    {
+        damagePerClick = amount;
+    }
+
+    //
+    public void SetCriticalChance(float amount)
+    {
+        criticalChance = amount;
+    }
+
+    //
+    public void SetCriticalDamage(float amount)
+    {
+        criticalDamage = amount;
+    }
+
+    //
+    public void SetGoldBonus(float amount)
+    {
+        goldBonus = amount;
     }
 }
