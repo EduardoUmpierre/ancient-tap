@@ -24,10 +24,10 @@ public class ShopController : MonoBehaviour {
 
         hero = GameObject.Find("Hero").GetComponent<Hero>();
         dpsButton = GameObject.Find("Shop_01_DPS_button");
-        dpcButton = GameObject.Find("Shop_02_DPC_button");
-        critChanceButton = GameObject.Find("Shop_03_CRITCHANCE_button");
-        critDamageButton = GameObject.Find("Shop_04_CRITDAMAGE_button");
-        goldBonusButton = GameObject.Find("Shop_05_GOLDBONUS_button");
+        dpcButton = GameObject.Find("Shop_01_DPC_button");
+        critChanceButton = GameObject.Find("Shop_01_CRITCHANCE_button");
+        critDamageButton = GameObject.Find("Shop_01_CRITDAMAGE_button");
+        goldBonusButton = GameObject.Find("Shop_01_GOLDBONUS_button");
     }
 	
 	// Update is called once per frame
@@ -61,7 +61,18 @@ public class ShopController : MonoBehaviour {
     //
     private void UpdateButtonText(GameObject button, float level)
     {
-        button.GetComponentInChildren<Text>().text = "$" + GetCost(level).ToString();
+        Button buttonComponent = button.GetComponent<Button>();
+        int cost = GetCost(level);
+
+        button.GetComponentInChildren<Text>().text = "Lvl " + level.ToString() + " - $" + cost.ToString();
+
+        if (cost > Hero.coins)
+        {
+            buttonComponent.interactable = false;
+        } else
+        {
+            buttonComponent.interactable = true;
+        }
     }
 
     //

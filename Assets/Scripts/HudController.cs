@@ -9,6 +9,8 @@ public class HudController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
 		level = GameObject.Find("HUDLevel");
         coins = GameObject.Find("HUDCoins");
     }
