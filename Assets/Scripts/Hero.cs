@@ -10,7 +10,7 @@ public class Hero : MonoBehaviour {
     Monster monsterComponent;
     GameObject monster;
 
-    int damagePerSecond = 1;
+    int damagePerSecond = 0;
     int damagePerClick = 1;
     float criticalChance = 0f;
     float criticalDamage = 2f;
@@ -41,26 +41,29 @@ public class Hero : MonoBehaviour {
     // Deals the damage to the monster and manage the monster respawn
     private void Damage(int damage)
     {
-        bool isCriticalHit = Random.Range(0f, 1f) > (100 - criticalChance) / 100;
-
-        damage *= isCriticalHit ? Mathf.CeilToInt(criticalDamage) : 1;
-
-        monsterComponent.health -= damage;
-        monsterComponent.ShowFloatingText(damage, isCriticalHit);
-
-        if (monsterComponent.health > 0)
+        if (damage > 0)
         {
-            // Hit animation
-            Debug.Log(level + " - " + damage + "/" + monsterComponent.health);
-        }
-        else
-        {
-            Destroy(monster, 0.3f);
+            bool isCriticalHit = Random.Range(0f, 1f) > (100 - criticalChance) / 100;
 
-            level += 1;
+            damage *= isCriticalHit ? Mathf.CeilToInt(criticalDamage) : 1;
 
-            monster = monsterSpawner.SpawnMob();
-            monsterComponent = monster.GetComponent<Monster>();
+            monsterComponent.health -= damage;
+            monsterComponent.ShowFloatingText(damage, isCriticalHit);
+
+            if (monsterComponent.health > 0)
+            {
+                // Hit animation
+                Debug.Log(level + " - " + damage + "/" + monsterComponent.health);
+            }
+            else
+            {
+                Destroy(monster, 0.3f);
+
+                level += 1;
+
+                monster = monsterSpawner.SpawnMob();
+                monsterComponent = monster.GetComponent<Monster>();
+            }
         }
     }
 

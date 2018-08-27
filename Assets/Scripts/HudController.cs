@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HudController : MonoBehaviour {
     GameObject level;
@@ -14,7 +15,7 @@ public class HudController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		level.GetComponent<TextMesh>().text = "LEVEL " + Hero.level;
-        coins.GetComponent<TextMesh>().text = Hero.coins.ToString();
+		level.GetComponent<Text>().text = "Level " + Hero.level;
+        coins.GetComponent<Text>().text = Hero.coins.ToString();
     }
 }

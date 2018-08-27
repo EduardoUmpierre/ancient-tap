@@ -11,6 +11,9 @@ public class MonsterSpawner : MonoBehaviour {
     void Awake()
     {
         SpawnMob();
+
+        // Loads the game
+        // SaveLoad.Load();
     }
 
     // Called first
@@ -28,6 +31,11 @@ public class MonsterSpawner : MonoBehaviour {
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnApplicationQuit() 
+    {
+        SaveLoad.Save();
     }
 
     // Instantiate a new monster based on level
