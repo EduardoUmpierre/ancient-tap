@@ -5,27 +5,47 @@ using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour {
     int dpsLevel = 1;
-    int dpsPerLevel = 1;
+    float dpsPerLevel = 1f;
+
     int dpcLevel = 1;
-    int dpcPerLevel = 1;
+    float dpcPerLevel = 1f;
+
+    int critChanceLevel = 1;
+    float critChancePerLevel = 1.05f;
+
+    int critDamageLevel = 1;
+    float critDamagePerLevel = 1.15f;
+
+    int goldBonusLevel = 1;
+    float goldBonusPerLevel = 1.025f;
 
     Hero hero;
-    GameObject dps_01_button;
-    GameObject dpc_02_button;
+    GameObject dpsButton;
+    GameObject dpcButton;
+    GameObject critChanceButton;
+    GameObject critDamageButton;
+    GameObject goldBonusButton;
 
     // Use this for initialization
     void Start ()
     {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
-        dps_01_button = GameObject.Find("Shop_01_DPS_button");
-        dpc_02_button = GameObject.Find("Shop_02_DPC_button");
+        dpsButton = GameObject.Find("Shop_01_DPS_button");
+        dpcButton = GameObject.Find("Shop_02_DPC_button");
+        critChanceButton = GameObject.Find("Shop_03_CRITCHANCE_button");
+        critDamageButton = GameObject.Find("Shop_04_CRITDAMAGE_button");
+        goldBonusButton = GameObject.Find("Shop_05_GOLDBONUS_button");
+
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        UpdateButtonText(dps_01_button, dpsLevel);
-        UpdateButtonText(dpc_02_button, dpcLevel);
+        UpdateButtonText(dpsButton, dpsLevel);
+        UpdateButtonText(dpcButton, dpcLevel);
+        UpdateButtonText(critChanceButton, critChanceLevel);
+        UpdateButtonText(critDamageButton, critDamageLevel);
+        UpdateButtonText(goldBonusButton, goldBonusLevel);
     }
 
     //
@@ -45,9 +65,25 @@ public class ShopController : MonoBehaviour {
                     dpcLevel++;
                 }
                 break;
+            case "crit_chance":
+                if (hero.Upgrade(type, critChancePerLevel, GetCost(critChanceLevel)))
+                {
+                    critChanceLevel++;
+                }
+                break;
+            case "crit_damage":
+                if (hero.Upgrade(type, critDamagePerLevel, GetCost(critDamageLevel)))
+                {
+                    critDamageLevel++;
+                }
+                break;
+            case "gold_bonus":
+                if (hero.Upgrade(type, goldBonusPerLevel, GetCost(goldBonusLevel)))
+                {
+                    goldBonusLevel++;
+                }
+                break;
         }
-
-        Debug.Log(type);
     }
 
     //

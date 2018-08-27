@@ -711,7 +711,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Android monster
 
-    DPS +1'
+    Crit Chance +0.5'
 --- !u!222 &120313063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 218450833}
   - component: {fileID: 218450832}
   m_Layer: 5
-  m_Name: Shop_DPS_button
+  m_Name: Shop_03_CRITCHANCE_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1316,7 +1316,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: dps
+          m_StringArgument: crit_chance
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1890,7 +1890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355514165}
   m_Layer: 5
-  m_Name: Shop_Item (1)
+  m_Name: Shop_Item DPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2303,7 +2303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 450014589}
   m_Layer: 5
-  m_Name: Shop_Item (3)
+  m_Name: Shop_Item CRIT DAMAGE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2344,7 +2344,7 @@ GameObject:
   - component: {fileID: 481363474}
   - component: {fileID: 481363473}
   m_Layer: 5
-  m_Name: Shop_DPS_button
+  m_Name: Shop_05_GOLDBONUS_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2418,7 +2418,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: dps
+          m_StringArgument: gold_bonus
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2564,6 +2564,15 @@ Prefab:
     - target: {fileID: 1476321944261202, guid: aeac67ac426078249b19709669af30fb, type: 2}
       propertyPath: m_Name
       value: Shop_01_DPS_button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114724912251774322, guid: aeac67ac426078249b19709669af30fb,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141944686134348, guid: aeac67ac426078249b19709669af30fb, type: 2}
+      propertyPath: m_Name
+      value: Shop_Item DPS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac67ac426078249b19709669af30fb, type: 2}
@@ -3297,7 +3306,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Android monster
 
-    DPS +1'
+    Crit damage +15%'
 --- !u!222 &555857109
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3715,7 +3724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641109577}
   m_Layer: 5
-  m_Name: Shop_Item (4)
+  m_Name: Shop_Item GOLD BONUS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4988,9 +4997,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Android monster
-
-    DPS +1'
+  m_Text: "Android monster\nGold b\xF4nus +25%"
 --- !u!222 &918521797
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7413,7 +7420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577544171}
   m_Layer: 5
-  m_Name: Shop_Item (2)
+  m_Name: Shop_Item CRIT CHANCE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9048,7 +9055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882884380}
   m_Layer: 5
-  m_Name: Shop_Item
+  m_Name: Shop_Item DPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9416,7 +9423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f825abbcdfc4f4bb25f233fde1b86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 1
 --- !u!1 &2028496382
 GameObject:
   m_ObjectHideFlags: 0
@@ -9430,7 +9436,7 @@ GameObject:
   - component: {fileID: 2028496385}
   - component: {fileID: 2028496384}
   m_Layer: 5
-  m_Name: Shop_DPS_button
+  m_Name: Shop_04_CRITDAMAGE_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9504,7 +9510,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: dps
+          m_StringArgument: crit_damage
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
