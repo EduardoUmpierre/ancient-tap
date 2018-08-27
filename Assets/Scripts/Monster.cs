@@ -33,24 +33,22 @@ public class Monster : MonoBehaviour {
     }
 
     // Shows the Floating Text
-    public void ShowFloatingText(int damage) {
+    public void ShowFloatingText(int damage, bool isCriticalHit) {
         Color32 color;
+        int fontSize = 30;
 
-        if (damage < 100) {
-            // Green
-            color = new Color32(28, 199, 48, 255);
-        } else if (damage < 1000) {
-            // Yellow
-            color = new Color32(218, 191, 0, 255);
+        if (isCriticalHit) {
+            color = new Color32(218, 191, 0, 255); // Yellow
+            fontSize = 40;
         } else {
-            // Red
-            color = new Color32(218, 0, 0, 255);
+            color = new Color32(218, 0, 0, 255); // Red
         }
 
         // Creates the floating text
         var floatingText = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
         floatingText.GetComponent<TextMesh>().text = damage.ToString();
         floatingText.GetComponent<TextMesh>().color = color;
+        floatingText.GetComponent<TextMesh>().fontSize = fontSize;
         floatingText.GetComponent<Renderer>().sortingOrder = 2;
     }
 }
