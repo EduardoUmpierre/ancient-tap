@@ -3,98 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class ShopController : MonoBehaviour {
-    int dpsLevel = 1;
-    float dpsPerLevel = 1f;
-
-    int dpcLevel = 1;
-    float dpcPerLevel = 1f;
-
-    int critChanceLevel = 1;
-    float critChancePerLevel = 1.05f;
-
-    int critDamageLevel = 1;
-    float critDamagePerLevel = 1.15f;
-
-    int goldBonusLevel = 1;
-    float goldBonusPerLevel = 1.025f;
-
     Hero hero;
     GameObject dpsButton;
     GameObject dpcButton;
     GameObject critChanceButton;
     GameObject critDamageButton;
     GameObject goldBonusButton;
+    Dictionary<string, Dictionary<string, float>> shopListItems = new Dictionary<string, Dictionary<string, float>>();
 
     // Use this for initialization
     void Start ()
     {
+        SetUpShopListItems();
+
         hero = GameObject.Find("Hero").GetComponent<Hero>();
         dpsButton = GameObject.Find("Shop_01_DPS_button");
         dpcButton = GameObject.Find("Shop_02_DPC_button");
         critChanceButton = GameObject.Find("Shop_03_CRITCHANCE_button");
         critDamageButton = GameObject.Find("Shop_04_CRITDAMAGE_button");
         goldBonusButton = GameObject.Find("Shop_05_GOLDBONUS_button");
-
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        UpdateButtonText(dpsButton, dpsLevel);
-        UpdateButtonText(dpcButton, dpcLevel);
-        UpdateButtonText(critChanceButton, critChanceLevel);
-        UpdateButtonText(critDamageButton, critDamageLevel);
-        UpdateButtonText(goldBonusButton, goldBonusLevel);
+        UpdateButtonText(dpsButton, shopListItems["dps"]["level"]);
+        UpdateButtonText(dpcButton, shopListItems["dpc"]["level"]);
+        UpdateButtonText(critChanceButton, shopListItems["crit_chance"]["level"]);
+        UpdateButtonText(critDamageButton, shopListItems["crit_damage"]["level"]);
+        UpdateButtonText(goldBonusButton, shopListItems["gold_bonus"]["level"]);
     }
 
     //
     public void ButtonClick(string type)
     {
-        switch (type)
+        float level = shopListItems[type]["level"];
+        float amount = shopListItems[type]["amountPerLevel"];
+
+        if (hero.Upgrade(type, amount, GetCost(level)))
         {
-            case "dps":
-                if (hero.Upgrade(type, dpsPerLevel, GetCost(dpsLevel)))
-                {
-                    dpsLevel++;
-                }               
-                break;
-            case "dpc":
-                if (hero.Upgrade(type, dpcPerLevel, GetCost(dpcLevel)))
-                {
-                    dpcLevel++;
-                }
-                break;
-            case "crit_chance":
-                if (hero.Upgrade(type, critChancePerLevel, GetCost(critChanceLevel)))
-                {
-                    critChanceLevel++;
-                }
-                break;
-            case "crit_damage":
-                if (hero.Upgrade(type, critDamagePerLevel, GetCost(critDamageLevel)))
-                {
-                    critDamageLevel++;
-                }
-                break;
-            case "gold_bonus":
-                if (hero.Upgrade(type, goldBonusPerLevel, GetCost(goldBonusLevel)))
-                {
-                    goldBonusLevel++;
-                }
-                break;
-        }
+            shopListItems[type]["level"] = level + 1;
+        }  
     }
 
     //
-    private int GetCost(int level)
+    private int GetCost(float level)
     {
-        return level * 10;
+        return Mathf.CeilToInt(level * (int) ((level * 1.5) * 10));
     }
 
     //
-    private void UpdateButtonText(GameObject button, int level)
+    private void UpdateButtonText(GameObject button, float level)
     {
         button.GetComponentInChildren<Text>().text = "$" + GetCost(level).ToString();
+    }
+
+    //
+    private void SetUpShopListItems()
+    {
+        shopListItems.Add("dps", SetUpItemConfiguration(1f, 1f));
+        shopListItems.Add("dpc", SetUpItemConfiguration(1f, 1f));
+        shopListItems.Add("crit_chance", SetUpItemConfiguration(1f, 1.05f));
+        shopListItems.Add("crit_damage", SetUpItemConfiguration(1f, 1.15f));
+        shopListItems.Add("gold_bonus", SetUpItemConfiguration(1f, 1.025f));
+    }
+
+    //
+    private Dictionary<string, float> SetUpItemConfiguration(float level, float amountPerLevel)
+    {
+        Dictionary<string, float> itemConfiguration = new Dictionary<string, float>
+        {
+            { "level", level },
+            { "amountPerLevel", amountPerLevel }
+        };
+
+        return itemConfiguration;
     }
 }

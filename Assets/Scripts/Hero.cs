@@ -78,19 +78,19 @@ public class Hero : MonoBehaviour {
             switch (type)
             {
                 case "dps":
-                    damagePerSecond += (int) amount;
+                    IncreaseDamagePerSecond((int) amount);
                     break;
                 case "dpc":
-                    damagePerClick += (int) amount;
+                    IncreaseDamagePerClick((int) amount);
                     break;
                 case "crit_chance":
-                    criticalChance *= amount;
+                    IncreaseCriticalChance(amount);
                     break;
                 case "crit_damage":
-                    criticalDamage *= amount;
+                    IncreaseCriticalDamage(amount);
                     break;
                 case "gold_bonus":
-                    goldBonus *= amount;
+                    IncreaseGoldBonus(amount);
                     break;
             }
 
@@ -109,20 +109,32 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public void IncreaseCriticalDamage(float amount)
+    private void IncreaseDamagePerSecond(int amount) 
     {
-        criticalDamage += amount;
+        damagePerSecond += amount;
     }
 
     //
-    public void IncreaseCriticalChange(float amount)
+    private void IncreaseDamagePerClick(int amount) 
     {
-        criticalChance += amount;
+        damagePerClick += amount;
     }
 
     //
-    public void IncreaseGoldBonus(float amount)
+    private void IncreaseCriticalChance(float amount)
     {
-        goldBonus += amount;
+        criticalChance *= amount;
+    }
+
+    //
+    private void IncreaseCriticalDamage(float amount)
+    {
+        criticalDamage *= amount;
+    }
+
+    //
+    private void IncreaseGoldBonus(float amount)
+    {
+        goldBonus *= amount;
     }
 }
