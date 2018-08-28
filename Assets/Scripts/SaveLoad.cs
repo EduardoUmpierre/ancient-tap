@@ -20,7 +20,7 @@ public class SaveLoad : MonoBehaviour {
             criticalChance = Hero.criticalChance,
             criticalDamage = Hero.criticalDamage,
             goldBonus = Hero.goldBonus,
-            shopListItems = ShopController.shopListItems
+            shopListItems = ShopController.shopController
         };
 
         return save;
@@ -37,7 +37,6 @@ public class SaveLoad : MonoBehaviour {
      
     //
     public static void Load() {
-        // 1
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -45,7 +44,6 @@ public class SaveLoad : MonoBehaviour {
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
-            // 4
             Hero.level = save.level;
             Hero.coins = save.coins;
             Hero.damagePerSecond = save.damagePerSecond;
@@ -53,11 +51,10 @@ public class SaveLoad : MonoBehaviour {
             Hero.criticalChance = save.criticalChance;
             Hero.criticalDamage = save.criticalDamage;
             Hero.goldBonus = save.goldBonus;
-            // ShopController.shopListItems = save.shopListItems;
 
-            foreach (KeyValuePair<string, Dictionary<string, float>> entry in save.shopListItems)
+            foreach (KeyValuePair<string, Dictionary<string, object>> entry in save.shopListItems)
             {
-                ShopController.shopListItems[entry.Key] = entry.Value;
+                ShopController.shopController[entry.Key] = entry.Value;
             }
 
             Debug.Log("Game Loaded");

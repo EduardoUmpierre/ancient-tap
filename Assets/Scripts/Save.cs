@@ -13,5 +13,5 @@ public class Save {
     public float criticalDamage;
     public float goldBonus;
 
-    public Dictionary<string, Dictionary<string, float>> shopListItems;
+    public Dictionary<string, Dictionary<string, object>> shopListItems;
 }

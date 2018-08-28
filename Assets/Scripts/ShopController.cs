@@ -5,107 +5,151 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class ShopController : MonoBehaviour {
-    public static Dictionary<string, Dictionary<string, float>> shopListItems = new Dictionary<string, Dictionary<string, float>>();
+    public static Dictionary<string, Dictionary<string, object>> shopController = new Dictionary<string, Dictionary<string, object>>();
+    public GameObject shopListPrefab;
+    public GameObject shopControllerContainer;
 
     Hero hero;
-    GameObject dpsButton;
-    GameObject dpcButton;
-    GameObject critChanceButton;
-    GameObject critDamageButton;
-    GameObject goldBonusButton;
+    Dictionary<string, object> shopListItems;
 
     // Use this for initialization
     void Start ()
     {
-        if (shopListItems.Count == 0)
+        if (shopController.Count == 0)
         {
             SetUpShopListItems();
         }
 
+        GenerateShopListItems();
+
         hero = GameObject.Find("Hero").GetComponent<Hero>();
-        dpsButton = GameObject.Find("Shop_01_DPS_button");
-        dpcButton = GameObject.Find("Shop_01_DPC_button");
-        critChanceButton = GameObject.Find("Shop_01_CRITCHANCE_button");
-        critDamageButton = GameObject.Find("Shop_01_CRITDAMAGE_button");
-        goldBonusButton = GameObject.Find("Shop_01_GOLDBONUS_button");
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        UpdateButtonText(dpsButton, shopListItems["dps"]["level"]);
-        UpdateButtonText(dpcButton, shopListItems["dpc"]["level"]);
-        UpdateButtonText(critChanceButton, shopListItems["crit_chance"]["level"]);
-        UpdateButtonText(critDamageButton, shopListItems["crit_damage"]["level"]);
-        UpdateButtonText(goldBonusButton, shopListItems["gold_bonus"]["level"]);
+        UpdateItems();
     }
 
     //
-    public void ButtonClick(string type)
+    void ButtonClick(string type)
     {
-        float level = shopListItems[type]["level"];
-        float amount = shopListItems[type]["amountPerLevel"];
+        float total = (float)shopController[type]["total"];
+        float level = (float)shopController[type]["level"];
+        float amount = (float)shopController[type]["amountPerLevel"];
 
         if (hero.Upgrade(type, amount, GetCost(level)))
         {
-            shopListItems[type]["level"] = level + 1;
+            shopController[type]["level"] = level + 1;
+            shopController[type]["total"] = total + amount;
         }  
     }
 
     //
     private int GetCost(float level)
     {
-        return Mathf.CeilToInt(level * (int) ((level * 1.5) * 10));
+        return Mathf.CeilToInt(level * (int) (level * 15));
     }
 
-    //
-    private void UpdateButtonText(GameObject button, float level)
-    {
-        Button buttonComponent = button.GetComponent<Button>();
-        int cost = GetCost(level);
-
-        button.GetComponentInChildren<Text>().text = "Lvl " + level.ToString() + " - $" + cost.ToString();
-
-        if (cost > Hero.coins)
-        {
-            buttonComponent.interactable = false;
-        } else
-        {
-            buttonComponent.interactable = true;
-        }
-    }
-
-    //
+    // Initialize the shop list items
     private void SetUpShopListItems()
     {
-        shopListItems.Add("dps", SetUpItemConfiguration(1f, 1f));
-        shopListItems.Add("dpc", SetUpItemConfiguration(1f, 1f));
-        shopListItems.Add("crit_chance", SetUpItemConfiguration(1f, 0.5f));
-        shopListItems.Add("crit_damage", SetUpItemConfiguration(1f, 1.15f));
-        shopListItems.Add("gold_bonus", SetUpItemConfiguration(1f, 1.025f));
+        shopController.Add("dps", SetUpItemConfiguration("Timety", "DPS", 1f, 1f, 0f));
+        shopController.Add("dpc", SetUpItemConfiguration("Hitter", "DPC", 1f, 1f, 0f));
+        shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", 1f, 0.5f, 0f));
+        shopController.Add("crit_damage", SetUpItemConfiguration("Brutus", "Crit Damage", 1f, 0.15f, 0f));
+        shopController.Add("gold_bonus", SetUpItemConfiguration("Goldentark", "Gold Bonus", 1f, 0.25f, 0f));
     }
 
-    //
-    private Dictionary<string, float> SetUpItemConfiguration(float level, float amountPerLevel)
+    // Shop list item setup
+    private Dictionary<string, object> SetUpItemConfiguration(string name, string type, float level, float amountPerLevel, float total)
     {
-        Dictionary<string, float> itemConfiguration = new Dictionary<string, float>
+        Dictionary<string, object> itemConfiguration = new Dictionary<string, object>
         {
+            { "name", name },
+            { "type", type },
             { "level", level },
-            { "amountPerLevel", amountPerLevel }
+            { "amountPerLevel", amountPerLevel },
+            { "total", total }
         };
 
         return itemConfiguration;
     }
 
-    //
-    public Dictionary<string, Dictionary<string, float>> GetShopListItems()
+    // shopController getter
+    public static Dictionary<string, Dictionary<string, object>> GetshopController()
     {
-        return shopListItems;
+        return shopController;
+    }
+
+    // shopController setter
+    public void SetshopController(Dictionary<string, Dictionary<string, object>> items)
+    {
+        shopController = items;
+    }
+
+    // Generates the shop list items
+    private void GenerateShopListItems()
+    {
+        float incrementFactor = 0.888f;
+        float i = 0.888f * shopController.Count / 7;
+        float y;
+
+        foreach (KeyValuePair<string, Dictionary<string, object>> entry in shopController)
+        {
+            y = (0.888f * 7 / shopController.Count) + i;
+
+            GameObject shopItem = Instantiate(shopListPrefab, new Vector3(-0.1f, -y, 0), Quaternion.identity, shopControllerContainer.transform);
+            shopItem.transform.Find("Name").GetComponent<Text>().text = entry.Value["name"].ToString();
+
+            UpdateItemInformation(shopItem.transform.Find("Information").GetComponent<Text>(), entry.Key);
+
+            shopListItems.Add(entry.Key, shopItem.gameObject);
+
+            i += incrementFactor;
+        }
+
+        // Parent resize
+        RectTransform parentRectTransform = shopControllerContainer.transform.parent.GetComponent<RectTransform>();
+        parentRectTransform.sizeDelta = new Vector2(parentRectTransform.sizeDelta.x, 125 * shopController.Count);
     }
 
     //
-    public void SetShopListItems(Dictionary<string, Dictionary<string, float>> items)
+    private void UpdateItems()
     {
-        shopListItems = items;
+        foreach (KeyValuePair<string, Dictionary<string, object>> entry in shopController)
+        {
+            GameObject item = (GameObject) shopListItems[entry.Key];
+            GameObject button = item.transform.Find("Button").gameObject;
+            Text information = item.transform.Find("Information").GetComponent<Text>();
+
+            UpdateButtonText(button, entry.Key);
+            UpdateItemInformation(information, entry.Key);
+        }
+    }
+
+    //
+    private void UpdateItemInformation(Text textComponent, string type)
+    {
+        textComponent.text = "Lv. " + shopController[type]["level"].ToString() + "\n" + shopController[type]["type"].ToString() + ": +" + shopController[type]["total"].ToString();
+    }
+
+    //
+    private void UpdateButtonText(GameObject button, string type)
+    {
+        Button buttonComponent = button.GetComponent<Button>();
+        int cost = GetCost((float) shopController[type]["level"]);
+
+        button.GetComponentInChildren<Text>().text = "$ " + cost.ToString() + "\n" + shopController[type]["type"] + " +" + shopController[type]["amountPerLevel"];
+        buttonComponent.onClick.AddListener(() => ButtonClick(type));
+
+        if (cost > Hero.coins)
+        {
+            buttonComponent.interactable = false;
+        }
+        else
+        {
+            buttonComponent.interactable = true;
+        }
     }
 }

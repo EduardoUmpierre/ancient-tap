@@ -27,11 +27,6 @@ public class Monster : MonoBehaviour {
         isBoss = hero.GetLevel() % 5 == 0;
         maxHealth = health = hero.GetLevel() * (bossFactor * 5);
 
-        Debug.Log("===============================");
-        Debug.Log("Max health: " + maxHealth);
-        Debug.Log("Health: " + health);
-        Debug.Log("===============================");
-
         healthBar = Instantiate(healthBarPrefab, new Vector3(0, isBoss ? 3.5f : 2.5f, 0), Quaternion.identity, transform);
         healthBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
 

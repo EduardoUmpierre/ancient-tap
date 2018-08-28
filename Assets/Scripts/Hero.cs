@@ -129,13 +129,13 @@ public class Hero : MonoBehaviour {
     //
     private void IncreaseCriticalDamage(float amount)
     {
-        criticalDamage *= amount;
+        criticalDamage += amount;
     }
 
     //
     private void IncreaseGoldBonus(float amount)
     {
-        goldBonus *= amount;
+        goldBonus += amount;
     }
 
     //
