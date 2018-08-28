@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61370802793844938}
   - component: {fileID: 95891456331091414}
   m_Layer: 0
-  m_Name: Boss 2 1
+  m_Name: Boss 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 2
-  healthBar: {fileID: 0}
 --- !u!212 &212806248166314542
 SpriteRenderer:
   m_ObjectHideFlags: 1

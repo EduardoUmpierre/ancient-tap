@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61780749667150840}
   - component: {fileID: 95630081823716912}
   m_Layer: 0
-  m_Name: Minion 1 1
+  m_Name: Minion 6
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,8 +103,7 @@ MonoBehaviour:
     type: 2}
   health: 0
   maxHealth: 0
-  bossFactor: 0
-  healthBar: {fileID: 0}
+  bossFactor: 1
 --- !u!212 &212378258781963004
 SpriteRenderer:
   m_ObjectHideFlags: 1

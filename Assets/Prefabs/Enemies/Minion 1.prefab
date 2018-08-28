@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61116004658384228}
   - component: {fileID: 95867606302196712}
   m_Layer: 0
-  m_Name: Minion
+  m_Name: Minion 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,9 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingTextPrefab: {fileID: 1234628932250676, guid: 8e7b247cc883d3940bd97fd22f070603,
     type: 2}
+  healthBarPrefab: {fileID: 1496052553561686, guid: a5d507d7866985d4fa8471b999a2ace4,
+    type: 2}
   health: 0
   maxHealth: 0
-  bossFactor: 0
+  bossFactor: 1
 --- !u!212 &212581013496020042
 SpriteRenderer:
   m_ObjectHideFlags: 1

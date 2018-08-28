@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 114852408686411720}
   - component: {fileID: 212214045567222260}
   m_Layer: 0
-  m_Name: white-space
-  m_TagString: Untagged
+  m_Name: HealthBar
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e277b4298ee534d9778111b7b5dc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterObject: {fileID: 0}
 --- !u!212 &212214045567222260
 SpriteRenderer:
   m_ObjectHideFlags: 1
