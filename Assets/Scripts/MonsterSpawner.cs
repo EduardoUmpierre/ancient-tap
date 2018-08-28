@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MonsterSpawner : MonoBehaviour {
-    public GameObject boss;
-    public GameObject minion;
+    public GameObject[] bossPrefab;
+    public GameObject[] minionPrefab;
 
-	// Called zero
+    // Called zero
     void Awake()
     {
         SpawnMob();
@@ -33,6 +33,7 @@ public class MonsterSpawner : MonoBehaviour {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    //
     void OnApplicationQuit() 
     {
         SaveLoad.Save();
@@ -40,7 +41,7 @@ public class MonsterSpawner : MonoBehaviour {
 
     // Instantiate a new monster based on level
     public GameObject SpawnMob() {
-        GameObject monster = Instantiate(Hero.level % 5 == 0 ? boss : minion, new Vector3(0, 1.15f, 0), Quaternion.identity, transform);
+        GameObject monster = Instantiate(Hero.level % 5 == 0 ? bossPrefab[Random.Range(0, bossPrefab.Length)] : minionPrefab[Random.Range(0, minionPrefab.Length)], new Vector3(0, 1.15f, 0), Quaternion.identity, transform);
         monster.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
         return monster;

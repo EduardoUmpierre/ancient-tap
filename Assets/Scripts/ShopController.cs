@@ -80,7 +80,7 @@ public class ShopController : MonoBehaviour {
     {
         shopListItems.Add("dps", SetUpItemConfiguration(1f, 1f));
         shopListItems.Add("dpc", SetUpItemConfiguration(1f, 1f));
-        shopListItems.Add("crit_chance", SetUpItemConfiguration(1f, 1.05f));
+        shopListItems.Add("crit_chance", SetUpItemConfiguration(1f, 0.5f));
         shopListItems.Add("crit_damage", SetUpItemConfiguration(1f, 1.15f));
         shopListItems.Add("gold_bonus", SetUpItemConfiguration(1f, 1.025f));
     }
@@ -107,7 +107,5 @@ public class ShopController : MonoBehaviour {
     public void SetShopListItems(Dictionary<string, Dictionary<string, float>> items)
     {
         shopListItems = items;
-
-        Debug.Log(items.ToString());
     }
 }

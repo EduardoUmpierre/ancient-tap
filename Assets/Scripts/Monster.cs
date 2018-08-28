@@ -4,32 +4,52 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     public GameObject FloatingTextPrefab;
-    public int health;
-    public int maxHealth;
+    public GameObject healthBarPrefab;
+    public int health = 999;
+    public int maxHealth = 999;
     public int bossFactor;
 
     Hero hero;
     bool isBoss = false;
-    int factor = 1;
+    bool isInvulnerable = true;
+    GameObject healthBar;
+
+    //
+    void Awake()
+    {
+        isInvulnerable = true;
+    }
 
     // Use this for initialization
     void Start() {
-        isBoss = Hero.level % 5 == 0;
-        factor = isBoss ? bossFactor : factor;
-
         hero = GameObject.Find("Hero").GetComponent<Hero>();
-        maxHealth = health = Hero.level * (factor * 5);
-	}
+
+        isBoss = hero.GetLevel() % 5 == 0;
+        maxHealth = health = hero.GetLevel() * (bossFactor * 5);
+
+        Debug.Log("===============================");
+        Debug.Log("Max health: " + maxHealth);
+        Debug.Log("Health: " + health);
+        Debug.Log("===============================");
+
+        healthBar = Instantiate(healthBarPrefab, new Vector3(0, isBoss ? 3.5f : 2.5f, 0), Quaternion.identity, transform);
+        healthBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
+        isInvulnerable = false;
+    }
 
     // Receives damage at every click
-    void OnMouseDown() {
+    private void OnMouseDown()
+    {
         hero.Hit();
     }
 
     // Increase the hero amount of coins after be destroyed
     private void OnDestroy()
     {
-        hero.AddCoins(5 * (Hero.level * factor));
+        hero.AddCoins(5 * (Hero.level * bossFactor));
+
+        Destroy(healthBar);
     }
 
     // Shows the Floating Text
@@ -50,5 +70,11 @@ public class Monster : MonoBehaviour {
         floatingText.GetComponent<TextMesh>().color = color;
         floatingText.GetComponent<TextMesh>().fontSize = fontSize;
         floatingText.GetComponent<Renderer>().sortingOrder = 2;
+    }
+
+    //
+    public bool IsInvulnerable()
+    {
+        return isInvulnerable;
     }
 }

@@ -23,8 +23,6 @@ public class SaveLoad : MonoBehaviour {
             shopListItems = ShopController.shopListItems
         };
 
-        Debug.Log(save);
-
         return save;
     }
 
@@ -59,8 +57,6 @@ public class SaveLoad : MonoBehaviour {
 
             foreach (KeyValuePair<string, Dictionary<string, float>> entry in save.shopListItems)
             {
-                Debug.Log(entry.Key);
-                Debug.Log(entry.Value.ToString());
                 ShopController.shopListItems[entry.Key] = entry.Value;
             }
 
