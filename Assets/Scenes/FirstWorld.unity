@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
+  m_Elasticity: 0.2
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopListPrefab: {fileID: 1035427964333220, guid: 168387363f66e8646b16444f05b7a28d,
     type: 2}
-  shopListItemsContainer: {fileID: 1487063924}
+  shopControllerContainer: {fileID: 914289392}
 --- !u!1 &810484675
 GameObject:
   m_ObjectHideFlags: 0
