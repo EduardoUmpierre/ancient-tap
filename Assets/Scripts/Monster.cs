@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     public GameObject FloatingTextPrefab;
-    public GameObject healthBarPrefab;
     public int health = 999;
     public int maxHealth = 999;
     public int bossFactor;
+    public string name;
 
     Hero hero;
-    bool isBoss = false;
-    bool isInvulnerable = true;
-    GameObject healthBar;
+    bool isInvulnerable;
 
-    //
+    // Turns the monster invulnerable
     void Awake()
     {
         isInvulnerable = true;
@@ -24,11 +22,7 @@ public class Monster : MonoBehaviour {
     void Start() {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
 
-        isBoss = hero.GetLevel() % 5 == 0;
         maxHealth = health = hero.GetLevel() * (bossFactor * 5);
-
-        healthBar = Instantiate(healthBarPrefab, new Vector3(0, isBoss ? 3.5f : 2.5f, 0), Quaternion.identity, transform);
-        healthBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
         isInvulnerable = false;
     }
@@ -43,8 +37,7 @@ public class Monster : MonoBehaviour {
     private void OnDestroy()
     {
         hero.AddCoins(5 * (Hero.level * bossFactor));
-
-        Destroy(healthBar);
+        // @todo Coins drop
     }
 
     // Shows the Floating Text
@@ -67,7 +60,7 @@ public class Monster : MonoBehaviour {
         floatingText.GetComponent<Renderer>().sortingOrder = 2;
     }
 
-    //
+    // Returns the invulnerable status
     public bool IsInvulnerable()
     {
         return isInvulnerable;

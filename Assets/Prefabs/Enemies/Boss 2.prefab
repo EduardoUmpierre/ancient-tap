@@ -99,11 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingTextPrefab: {fileID: 1234628932250676, guid: 8e7b247cc883d3940bd97fd22f070603,
     type: 2}
-  healthBarPrefab: {fileID: 1496052553561686, guid: a5d507d7866985d4fa8471b999a2ace4,
-    type: 2}
   health: 0
   maxHealth: 0
   bossFactor: 2
+  name: Hathor
 --- !u!212 &212711085906002992
 SpriteRenderer:
   m_ObjectHideFlags: 1
