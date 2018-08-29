@@ -689,7 +689,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Monster
 --- !u!222 &443420607
@@ -4877,7 +4877,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -179, y: -3.3}
-  m_SizeDelta: {x: 170.8, y: 21.6}
+  m_SizeDelta: {x: 170.8, y: 24}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2089100231
 MonoBehaviour:
@@ -4909,7 +4909,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 150
 --- !u!222 &2089100232
