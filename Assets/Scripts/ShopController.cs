@@ -10,7 +10,7 @@ public class ShopController : MonoBehaviour {
     public GameObject shopControllerContainer;
 
     Hero hero;
-    Dictionary<string, object> shopListItems;
+    Dictionary<string, object> shopListItems = new Dictionary<string, object>();
 
     // Use this for initialization
     void Start ()
@@ -37,6 +37,8 @@ public class ShopController : MonoBehaviour {
         float total = (float)shopController[type]["total"];
         float level = (float)shopController[type]["level"];
         float amount = (float)shopController[type]["amountPerLevel"];
+
+        Debug.Log(type);
 
         if (hero.Upgrade(type, amount, GetCost(level)))
         {
@@ -101,10 +103,11 @@ public class ShopController : MonoBehaviour {
 
             GameObject shopItem = Instantiate(shopListPrefab, new Vector3(-0.1f, -y, 0), Quaternion.identity, shopControllerContainer.transform);
             shopItem.transform.Find("Name").GetComponent<Text>().text = entry.Value["name"].ToString();
+            shopItem.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => ButtonClick(entry.Key));
 
             UpdateItemInformation(shopItem.transform.Find("Information").GetComponent<Text>(), entry.Key);
 
-            shopListItems.Add(entry.Key, shopItem.gameObject);
+            shopListItems.Add(entry.Key, shopItem);
 
             i += incrementFactor;
         }
@@ -141,7 +144,6 @@ public class ShopController : MonoBehaviour {
         int cost = GetCost((float) shopController[type]["level"]);
 
         button.GetComponentInChildren<Text>().text = "$ " + cost.ToString() + "\n" + shopController[type]["type"] + " +" + shopController[type]["amountPerLevel"];
-        buttonComponent.onClick.AddListener(() => ButtonClick(type));
 
         if (cost > Hero.coins)
         {
