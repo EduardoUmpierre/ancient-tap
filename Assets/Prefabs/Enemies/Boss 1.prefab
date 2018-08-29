@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 2
-  name: Nun
+  enemyName: Amun
 --- !u!212 &212608456167802022
 SpriteRenderer:
   m_ObjectHideFlags: 1

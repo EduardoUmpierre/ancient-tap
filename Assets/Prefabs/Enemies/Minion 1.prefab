@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 1
-  name: Nekhbet
+  enemyName: Seshat
 --- !u!212 &212581013496020042
 SpriteRenderer:
   m_ObjectHideFlags: 1

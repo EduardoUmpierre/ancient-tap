@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 1
-  name: Pakhet
+  enemyName: Tefnut
 --- !u!212 &212663637811708528
 SpriteRenderer:
   m_ObjectHideFlags: 1

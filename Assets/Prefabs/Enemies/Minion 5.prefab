@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 1
-  name: Wadjet
+  enemyName: Nephthys
 --- !u!212 &212137647464314496
 SpriteRenderer:
   m_ObjectHideFlags: 1

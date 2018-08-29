@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 1
-  name: Sekhmet
+  enemyName: Ptah
 --- !u!212 &212346576548855544
 SpriteRenderer:
   m_ObjectHideFlags: 1

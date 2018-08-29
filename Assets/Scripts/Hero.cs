@@ -11,6 +11,7 @@ public class Hero : MonoBehaviour {
     public static float criticalDamage = 2f;
     public static float goldBonus = 1f;
     public MonsterSpawner monsterSpawner;
+    public GameObject ExplosionPrefab;
 
     Monster monsterComponent;
     GameObject monster;
@@ -54,6 +55,8 @@ public class Hero : MonoBehaviour {
             }
             else
             {
+                GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, GameObject.Find("Spawner").transform);
+                Destroy(explosion, 0.1f);
                 Destroy(monster);
 
                 level += 1;

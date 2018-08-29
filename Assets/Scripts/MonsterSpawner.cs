@@ -11,8 +11,6 @@ public class MonsterSpawner : MonoBehaviour {
     // Called zero
     void Awake()
     {
-        SpawnMob();
-
         // Loads the game
         SaveLoad.Load();
     }
@@ -26,12 +24,18 @@ public class MonsterSpawner : MonoBehaviour {
     // Called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        
     }
 
     // Called when the game is terminated
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        SpawnMob();
     }
 
     //

@@ -102,7 +102,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   bossFactor: 1
-  name: Sobek
+  enemyName: Horus
 --- !u!212 &212378258781963004
 SpriteRenderer:
   m_ObjectHideFlags: 1
