@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     public static int level = 1;
-    public static int coins = 0;
-    public static int damagePerSecond = 0;
-    public static int damagePerClick = 1;
+    public static float coins = 0;
+    public static float damagePerSecond = 0;
+    public static float damagePerClick = 1;
     public static float criticalChance = 0f;
     public static float criticalDamage = 2f;
     public static float goldBonus = 1f;
@@ -38,7 +38,7 @@ public class Hero : MonoBehaviour {
     }
 
     // Deals the damage to the monster and manage the monster respawn
-    private void Damage(int damage)
+    private void Damage(float damage)
     {
         if (damage > 0 && !monsterComponent.IsInvulnerable())
         {
@@ -68,13 +68,13 @@ public class Hero : MonoBehaviour {
     }
 
     // Increase the amount of coins
-    public void AddCoins(int amount)
+    public void AddCoins(float amount)
     {
         coins += Mathf.CeilToInt(amount * goldBonus);
     }
 
     // Upgrades the hero status
-    public bool Upgrade(string type, float amount, int cost)
+    public bool Upgrade(string type, float amount, float cost)
     {
         if (!CanUpgrade(cost))
         {
@@ -84,10 +84,10 @@ public class Hero : MonoBehaviour {
         switch (type)
         {
             case "dps":
-                IncreaseDamagePerSecond((int)amount);
+                IncreaseDamagePerSecond(amount);
                 break;
             case "dpc":
-                IncreaseDamagePerClick((int)amount);
+                IncreaseDamagePerClick(amount);
                 break;
             case "crit_chance":
                 IncreaseCriticalChance(amount);
@@ -106,19 +106,19 @@ public class Hero : MonoBehaviour {
     }
 
     // Verifies if the hero has the necessary coins amount to do the upgrade
-    private bool CanUpgrade(int cost)
+    private bool CanUpgrade(float cost)
     {
         return coins >= cost;
     }
 
     //
-    private void IncreaseDamagePerSecond(int amount) 
+    private void IncreaseDamagePerSecond(float amount) 
     {
         damagePerSecond += amount;
     }
 
     //
-    private void IncreaseDamagePerClick(int amount) 
+    private void IncreaseDamagePerClick(float amount) 
     {
         damagePerClick += amount;
     }
@@ -142,13 +142,13 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public int GetDamagePerSecond()
+    public float GetDamagePerSecond()
     {
         return damagePerSecond;
     }
 
     //
-    public int GetDamagePerClick()
+    public float GetDamagePerClick()
     {
         return damagePerClick;
     }
@@ -172,13 +172,13 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public void SetDamagePerSecond(int amount)
+    public void SetDamagePerSecond(float amount)
     {
         damagePerSecond = amount;
     }
 
     //
-    public void SetDamagePerClick(int amount)
+    public void SetDamagePerClick(float amount)
     {
         damagePerClick = amount;
     }

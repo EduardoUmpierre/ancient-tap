@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Save {
     public int level;
-    public int coins;
+    public float coins;
 
-    public int damagePerSecond;
-    public int damagePerClick;
+    public float damagePerSecond;
+    public float damagePerClick;
     public float criticalChance;
     public float criticalDamage;
     public float goldBonus;

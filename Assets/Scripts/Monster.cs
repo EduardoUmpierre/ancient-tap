@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     public GameObject FloatingTextPrefab;
-    public int health = 999;
-    public int maxHealth = 999;
+    public float health = 999;
+    public float maxHealth = 999;
     public int bossFactor;
     public string enemyName;
 
@@ -41,15 +41,15 @@ public class Monster : MonoBehaviour {
     }
 
     // Shows the Floating Text
-    public void ShowFloatingText(int damage, bool isCriticalHit) {
+    public void ShowFloatingText(float damage, bool isCriticalHit) {
         Color32 color;
         int fontSize = 30;
 
         if (isCriticalHit) {
-            color = new Color32(218, 191, 0, 255); // Yellow
+            color = new Color32(228, 200, 0, 255); // Yellow
             fontSize = 40;
         } else {
-            color = new Color32(218, 0, 0, 255); // Red
+            color = new Color32(190, 0, 0, 255); // Red
         }
 
         // Creates the floating text

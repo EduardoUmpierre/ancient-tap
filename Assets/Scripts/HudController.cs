@@ -18,6 +18,6 @@ public class HudController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		level.GetComponent<Text>().text = "Level " + Hero.level;
-        coins.GetComponent<Text>().text = Hero.coins.ToString();
+        coins.GetComponent<Text>().text = "$ " + Hero.coins.ToString();
     }
 }
