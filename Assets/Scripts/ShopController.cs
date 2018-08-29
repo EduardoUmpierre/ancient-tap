@@ -38,40 +38,40 @@ public class ShopController : MonoBehaviour {
         float level = (float)shopController[type]["level"];
         float amount = (float)shopController[type]["amountPerLevel"];
 
-        Debug.Log(type);
-
         if (hero.Upgrade(type, amount, GetCost(level)))
         {
             shopController[type]["level"] = level + 1;
-            shopController[type]["total"] = total + amount;
+            shopController[type]["total"] = total + (float)shopController[type]["displayAmountPerLevel"];
         }  
     }
 
     //
     private int GetCost(float level)
     {
-        return Mathf.CeilToInt(level * (int) (level * 15));
+        return Mathf.CeilToInt(level * (int) (level * 10));
     }
 
     // Initialize the shop list items
     private void SetUpShopListItems()
     {
-        shopController.Add("dps", SetUpItemConfiguration("Timety", "DPS", 1f, 1f, 0f));
-        shopController.Add("dpc", SetUpItemConfiguration("Hitter", "DPC", 1f, 1f, 0f));
-        shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", 1f, 0.5f, 0f));
-        shopController.Add("crit_damage", SetUpItemConfiguration("Brutus", "Crit Damage", 1f, 0.15f, 0f));
-        shopController.Add("gold_bonus", SetUpItemConfiguration("Goldentark", "Gold Bonus", 1f, 0.25f, 0f));
+        shopController.Add("dps", SetUpItemConfiguration("Timety", "DPS", "", 1f, 1f, 1f, 0f));
+        shopController.Add("dpc", SetUpItemConfiguration("Hitter", "DPC", "", 1f, 1f, 1f, 0f));
+        shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", "%", 1f, 2.5f, 2.5f, 0f));
+        shopController.Add("crit_damage", SetUpItemConfiguration("Brutus", "Crit Damage", "%", 1f, 0.15f, 15f, 0f));
+        shopController.Add("gold_bonus", SetUpItemConfiguration("Yggdrasill of Fortune", "Gold Bonus", "%", 1f, 0.25f, 25f, 0f));
     }
 
     // Shop list item setup
-    private Dictionary<string, object> SetUpItemConfiguration(string name, string type, float level, float amountPerLevel, float total)
+    private Dictionary<string, object> SetUpItemConfiguration(string name, string description, string type, float level, float amountPerLevel, float displayAmountPerLevel, float total)
     {
         Dictionary<string, object> itemConfiguration = new Dictionary<string, object>
         {
             { "name", name },
+            { "description", description },
             { "type", type },
             { "level", level },
             { "amountPerLevel", amountPerLevel },
+            { "displayAmountPerLevel", displayAmountPerLevel },
             { "total", total }
         };
 
@@ -134,7 +134,7 @@ public class ShopController : MonoBehaviour {
     //
     private void UpdateItemInformation(Text textComponent, string type)
     {
-        textComponent.text = "Lv. " + shopController[type]["level"].ToString() + "\n" + shopController[type]["type"].ToString() + ": +" + shopController[type]["total"].ToString();
+        textComponent.text = "Lv. " + shopController[type]["level"].ToString() + "\n" + shopController[type]["description"].ToString() + ": +" + shopController[type]["total"].ToString() + shopController[type]["type"];
     }
 
     //
@@ -143,7 +143,7 @@ public class ShopController : MonoBehaviour {
         Button buttonComponent = button.GetComponent<Button>();
         int cost = GetCost((float) shopController[type]["level"]);
 
-        button.GetComponentInChildren<Text>().text = "$ " + cost.ToString() + "\n" + shopController[type]["type"] + " +" + shopController[type]["amountPerLevel"];
+        button.GetComponentInChildren<Text>().text = "$ " + cost.ToString() + "\n" + shopController[type]["description"] + " +" + shopController[type]["displayAmountPerLevel"] + shopController[type]["type"];
 
         if (cost > Hero.coins)
         {

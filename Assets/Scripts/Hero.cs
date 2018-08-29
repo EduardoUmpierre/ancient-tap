@@ -56,7 +56,7 @@ public class Hero : MonoBehaviour {
             else
             {
                 GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, GameObject.Find("Spawner").transform);
-                Destroy(explosion, 0.1f);
+                Destroy(explosion, 0.5f);
                 Destroy(monster);
 
                 level += 1;
