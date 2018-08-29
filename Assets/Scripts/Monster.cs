@@ -7,7 +7,7 @@ public class Monster : MonoBehaviour {
     public int health = 999;
     public int maxHealth = 999;
     public int bossFactor;
-    public string name;
+    public string enemyName;
 
     Hero hero;
     bool isInvulnerable;
