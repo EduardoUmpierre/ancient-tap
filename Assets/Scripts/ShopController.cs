@@ -56,9 +56,9 @@ public class ShopController : MonoBehaviour {
     {
         shopController.Add("dps", SetUpItemConfiguration("Timety", "DPS", "", 1f, 1f, 1f, 0f));
         shopController.Add("dpc", SetUpItemConfiguration("Hitter", "DPC", "", 1f, 1f, 1f, 0f));
-        shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", "%", 1f, 2.5f, 2.5f, 0f));
+        shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", "%", 1f, 0.5f, 0.5f, 0f));
         shopController.Add("crit_damage", SetUpItemConfiguration("Brutus", "Crit Damage", "%", 1f, 0.15f, 15f, 0f));
-        shopController.Add("gold_bonus", SetUpItemConfiguration("Yggdrasill of Fortune", "Gold Bonus", "%", 1f, 0.25f, 25f, 0f));
+        shopController.Add("gold_bonus", SetUpItemConfiguration("Yggdrasill of Fortune", "Gold Bonus", "%", 1f, 0.05f, 5f, 0f));
     }
 
     // Shop list item setup

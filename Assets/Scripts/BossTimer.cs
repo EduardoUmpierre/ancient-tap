@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BossTimer : MonoBehaviour {
     public GameObject timerObject;
 
+    HudController HUDController;
     Text timer;
     Hero hero;
     float timeLeft = 20.0f;
@@ -15,21 +16,27 @@ public class BossTimer : MonoBehaviour {
     {
         timer = timerObject.GetComponent<Text>();
         hero = GameObject.Find("Hero").GetComponent<Hero>();
+        HUDController = GameObject.Find("HudController").GetComponent<HudController>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        timeLeft -= Time.deltaTime;
-
-        timer.text = timeLeft.ToString("N2");
-
-        if (timeLeft < 0)
+        if (timeLeft <= 0f)
         {
-            Hero.level -= 1;
+            timeLeft = 0f;
 
+            Hero.level -= 1;
             hero.DestroyMonster();
+            HUDController.SpawnBossFightButton();
+
             Destroy(gameObject);
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime;
+
+            timer.text = timeLeft.ToString("N2");
         }
     }
 }

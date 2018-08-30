@@ -7,8 +7,8 @@ public class Monster : MonoBehaviour {
     public GameObject BossTimerPrefab;
     public float health = 999;
     public float maxHealth = 999;
-    public int bossFactor;
     public string enemyName;
+    public int bossFactor = 5;
 
     Hero hero;
     GameObject bossTimer;
@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
         isBoss = hero.GetLevel() % 5 == 0;
 
-        maxHealth = health = hero.GetLevel() * (bossFactor * 5);
+        maxHealth = health = (hero.GetLevel() + 1) * (hero.GetLevel() + 2) * (isBoss ? bossFactor : 1);
 
         isInvulnerable = false;
 
@@ -45,9 +45,6 @@ public class Monster : MonoBehaviour {
     // Increase the hero amount of coins after be destroyed
     private void OnDestroy()
     {
-        hero.AddCoins(5 * (Hero.level * bossFactor));
-        // @todo Coins drop
-
         if (isBoss)
         {
             Destroy(bossTimer);

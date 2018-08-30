@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     public static int level = 1;
-    public static int maxLevel;
+    public static int maxLevel = 1;
     public static float coins = 0;
     public static float damagePerSecond = 0;
     public static float damagePerClick = 1;
@@ -14,6 +14,7 @@ public class Hero : MonoBehaviour {
 
     public MonsterSpawner monsterSpawner;
     public GameObject ExplosionPrefab;
+    public GameObject CoinPrefab;
 
     Monster monsterComponent;
     GameObject monster;
@@ -58,8 +59,13 @@ public class Hero : MonoBehaviour {
             else
             {
                 // Updates the hero's level
-                level += 1;
-                maxLevel = level > maxLevel ? level : maxLevel;
+                if (level >= maxLevel)
+                {
+                    level += 1;
+                    maxLevel = level;
+                }
+
+                AddCoins(5 * (level * monsterComponent.bossFactor));
 
                 DestroyMonster();
             }
@@ -70,6 +76,13 @@ public class Hero : MonoBehaviour {
     public void AddCoins(float amount)
     {
         coins += Mathf.CeilToInt(amount * goldBonus);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject coin = Instantiate(CoinPrefab, new Vector3(0, 1, 0), Quaternion.identity, monsterSpawner.transform);
+            coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.Range(-125f, 125f), Random.Range(-50f, 50f), 0));
+            Destroy(coin, 3f);
+        }
     }
 
     // Upgrades the hero status
@@ -180,7 +193,7 @@ public class Hero : MonoBehaviour {
     public void DestroyMonster()
     {
         // Explosion animation
-        GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, GameObject.Find("Spawner").transform);
+        GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, monsterSpawner.transform);
         Destroy(explosion, 0.5f);
 
         // Destroys the monster

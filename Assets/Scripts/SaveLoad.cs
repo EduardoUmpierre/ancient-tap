@@ -14,6 +14,7 @@ public class SaveLoad : MonoBehaviour {
         Save save = new Save
         {
             level = Hero.level,
+            maxLevel = Hero.maxLevel,
             coins = Hero.coins,
             damagePerSecond = Hero.damagePerSecond,
             damagePerClick = Hero.damagePerClick,
@@ -45,6 +46,7 @@ public class SaveLoad : MonoBehaviour {
             file.Close();
 
             Hero.level = save.level;
+            Hero.maxLevel = save.maxLevel;
             Hero.coins = save.coins;
             Hero.damagePerSecond = save.damagePerSecond;
             Hero.damagePerClick = save.damagePerClick;

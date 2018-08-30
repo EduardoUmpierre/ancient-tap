@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Save {
     public int level;
+    public int maxLevel;
     public float coins;
 
     public float damagePerSecond;

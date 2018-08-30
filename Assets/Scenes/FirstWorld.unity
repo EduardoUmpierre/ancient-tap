@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3966367}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 179047109}
   - component: {fileID: 179047108}
   - component: {fileID: 179047107}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 210773208}
   - component: {fileID: 210773207}
   - component: {fileID: 210773206}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scrollbar Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 235101957}
   - component: {fileID: 235101959}
   - component: {fileID: 235101958}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HUDCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 443420605}
   - component: {fileID: 443420607}
   - component: {fileID: 443420606}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HBMonsterName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 546645553}
   - component: {fileID: 546645552}
   - component: {fileID: 546645551}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1242,9 +1242,10 @@ GameObject:
   m_Component:
   - component: {fileID: 630125771}
   - component: {fileID: 630125772}
-  m_Layer: 0
+  - component: {fileID: 630125773}
+  m_Layer: 21
   m_Name: rocks_4
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1256,7 +1257,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 630125770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1249447, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: 1.1249447, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -1296,7 +1297,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300008, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1308,6 +1309,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &630125773
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 630125770}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15780023}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.68439955}
+  m_EdgeRadius: 0
 --- !u!1 &675801198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1487,7 @@ GameObject:
   - component: {fileID: 793226598}
   - component: {fileID: 793226597}
   - component: {fileID: 793226596}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1652,9 +1678,10 @@ GameObject:
   m_Component:
   - component: {fileID: 900274695}
   - component: {fileID: 900274696}
-  m_Layer: 0
+  - component: {fileID: 900274697}
+  m_Layer: 21
   m_Name: rocks_0
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1666,7 +1693,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 900274694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8727064, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: -2.8727064, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -1706,7 +1733,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1718,6 +1745,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &900274697
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900274694}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15780011}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.6843998}
+  m_EdgeRadius: 0
 --- !u!1 &914289392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914289393}
   - component: {fileID: 914289394}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1852,7 +1904,7 @@ GameObject:
   - component: {fileID: 945003576}
   - component: {fileID: 945003575}
   - component: {fileID: 945003574}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HBContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1878,7 +1930,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 496}
-  m_SizeDelta: {x: 500, y: 44}
+  m_SizeDelta: {x: 400, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945003574
 MonoBehaviour:
@@ -2160,7 +2212,7 @@ GameObject:
   - component: {fileID: 1031282924}
   - component: {fileID: 1031282926}
   - component: {fileID: 1031282925}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HUDLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,7 +2288,7 @@ GameObject:
   - component: {fileID: 1056750431}
   - component: {fileID: 1056750430}
   - component: {fileID: 1056750429}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2300,7 +2352,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1818791683}
   m_HandleRect: {fileID: 1818791682}
   m_Direction: 2
-  m_Value: 0.99999756
+  m_Value: 0.9999978
   m_Size: 0.55679995
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2427,7 +2479,7 @@ GameObject:
   - component: {fileID: 1079821231}
   - component: {fileID: 1079821233}
   - component: {fileID: 1079821232}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2645,9 +2697,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1262237398}
   - component: {fileID: 1262237399}
-  m_Layer: 0
+  - component: {fileID: 1262237400}
+  m_Layer: 21
   m_Name: rocks_1 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2659,7 +2712,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1262237397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1171937, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: 3.1171937, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -2699,7 +2752,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300002, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2711,6 +2764,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1262237400
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1262237397}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1574364}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.6851272}
+  m_EdgeRadius: 0
 --- !u!1 &1266474787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,7 +3247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1487063925}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: shopListItemsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3338,9 +3416,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1586962924}
   - component: {fileID: 1586962925}
-  m_Layer: 0
+  - component: {fileID: 1586962926}
+  m_Layer: 21
   m_Name: rocks_3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3352,7 +3431,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1586962923}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.124793515, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: 0.124793515, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -3392,7 +3471,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300006, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3404,6 +3483,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1586962926
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586962923}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15780023}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.68439955}
+  m_EdgeRadius: 0
 --- !u!1 &1607216450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,7 +3668,7 @@ GameObject:
   - component: {fileID: 1657603491}
   - component: {fileID: 1657603493}
   - component: {fileID: 1657603492}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HBBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3587,7 +3691,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 498, y: 42}
+  m_SizeDelta: {x: 398, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1657603492
 MonoBehaviour:
@@ -3632,9 +3736,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1667110188}
   - component: {fileID: 1667110189}
-  m_Layer: 0
+  - component: {fileID: 1667110190}
+  m_Layer: 21
   m_Name: rocks_0 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3646,7 +3751,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1667110187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1172936, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: 2.1172936, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -3686,7 +3791,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3698,6 +3803,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1667110190
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1667110187}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15743664}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.6851267}
+  m_EdgeRadius: 0
 --- !u!1 &1693198244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3725,6 +3855,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf3d09154600674995f1a7c8ba83879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BossFightButtonPrefab: {fileID: 1466945998516618, guid: f4fa8e33aba3c3e4dbc359a70c9ee9e1,
+    type: 2}
+  HUDContainer: {fileID: 1536556626}
+  HUDLevel: {fileID: 1031282923}
+  HUDCoins: {fileID: 235101956}
+  HeroObject: {fileID: 2020513699}
 --- !u!4 &1693198246
 Transform:
   m_ObjectHideFlags: 0
@@ -3822,9 +3958,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1733532291}
   - component: {fileID: 1733532292}
-  m_Layer: 0
+  - component: {fileID: 1733532293}
+  m_Layer: 21
   m_Name: rocks_1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3836,7 +3973,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1733532290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8728065, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: -1.8728065, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -3876,7 +4013,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300002, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3888,6 +4025,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1733532293
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1733532290}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15780023}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.68439955}
+  m_EdgeRadius: 0
 --- !u!1 &1752759463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4033,7 +4195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1759796260}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4294,7 +4456,7 @@ GameObject:
   - component: {fileID: 1818791682}
   - component: {fileID: 1818791684}
   - component: {fileID: 1818791683}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4737,9 +4899,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1958162035}
   - component: {fileID: 1958162036}
-  m_Layer: 0
+  - component: {fileID: 1958162037}
+  m_Layer: 21
   m_Name: rocks_2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4751,7 +4914,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958162034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8753486, y: 0.75357985, z: -0.036153395}
+  m_LocalPosition: {x: -0.8753486, y: 0.75357985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566809959}
@@ -4791,7 +4954,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300004, guid: 6abc55e0fb8e7944ca89b10f4051785c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4803,6 +4966,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1958162037
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958162034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15780023}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.68439955}
+  m_EdgeRadius: 0
 --- !u!1 &2020513699
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,6 +5034,7 @@ MonoBehaviour:
   monsterSpawner: {fileID: 21641157}
   ExplosionPrefab: {fileID: 1033060576479148, guid: 924ea300b40771746b7e62050a80dd33,
     type: 2}
+  CoinPrefab: {fileID: 1180037642699388, guid: 4e13c7093006ab844814e9bd1ab6957f, type: 2}
 --- !u!1 &2089100229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4856,7 +5045,7 @@ GameObject:
   - component: {fileID: 2089100230}
   - component: {fileID: 2089100232}
   - component: {fileID: 2089100231}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HBMonsterHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
