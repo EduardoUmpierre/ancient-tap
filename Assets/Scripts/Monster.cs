@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     public GameObject FloatingTextPrefab;
+    public GameObject BossTimerPrefab;
     public float health = 999;
     public float maxHealth = 999;
     public int bossFactor;
@@ -11,6 +12,7 @@ public class Monster : MonoBehaviour {
 
     Hero hero;
     bool isInvulnerable;
+    bool isBoss;
 
     // Turns the monster invulnerable
     void Awake()
@@ -21,10 +23,16 @@ public class Monster : MonoBehaviour {
     // Use this for initialization
     void Start() {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
+        isBoss = hero.GetLevel() % 5 == 0;
 
         maxHealth = health = hero.GetLevel() * (bossFactor * 5);
 
         isInvulnerable = false;
+
+        if (isBoss)
+        {
+            Instantiate(BossTimerPrefab, new Vector3(0, 0.65f, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+        }
     }
 
     // Receives damage at every click

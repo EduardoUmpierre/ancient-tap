@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     public static int level = 1;
+    public static int maxLevel;
     public static float coins = 0;
     public static float damagePerSecond = 0;
     public static float damagePerClick = 1;
     public static float criticalChance = 0f;
     public static float criticalDamage = 2f;
     public static float goldBonus = 1f;
+
     public MonsterSpawner monsterSpawner;
     public GameObject ExplosionPrefab;
 
@@ -55,14 +57,11 @@ public class Hero : MonoBehaviour {
             }
             else
             {
-                GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, GameObject.Find("Spawner").transform);
-                Destroy(explosion, 0.5f);
-                Destroy(monster);
-
+                // Updates the hero's level
                 level += 1;
+                maxLevel = level > maxLevel ? level : maxLevel;
 
-                monster = monsterSpawner.SpawnMob();
-                monsterComponent = monster.GetComponent<Monster>();
+                DestroyMonster();
             }
         }
     }
@@ -172,38 +171,23 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public void SetDamagePerSecond(float amount)
-    {
-        damagePerSecond = amount;
-    }
-
-    //
-    public void SetDamagePerClick(float amount)
-    {
-        damagePerClick = amount;
-    }
-
-    //
-    public void SetCriticalChance(float amount)
-    {
-        criticalChance = amount;
-    }
-
-    //
-    public void SetCriticalDamage(float amount)
-    {
-        criticalDamage = amount;
-    }
-
-    //
-    public void SetGoldBonus(float amount)
-    {
-        goldBonus = amount;
-    }
-
-    //
     public int GetLevel()
     {
         return level;
+    }
+
+    //
+    public void DestroyMonster()
+    {
+        // Explosion animation
+        GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, GameObject.Find("Spawner").transform);
+        Destroy(explosion, 0.5f);
+
+        // Destroys the monster
+        Destroy(monster);
+
+        // Spawns a new monster
+        monster = monsterSpawner.SpawnMob();
+        monsterComponent = monster.GetComponent<Monster>();
     }
 }
