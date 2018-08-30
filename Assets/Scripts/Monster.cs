@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour {
     public string enemyName;
 
     Hero hero;
+    GameObject bossTimer;
     bool isInvulnerable;
     bool isBoss;
 
@@ -31,7 +32,7 @@ public class Monster : MonoBehaviour {
 
         if (isBoss)
         {
-            Instantiate(BossTimerPrefab, new Vector3(0, 0.65f, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+            bossTimer = Instantiate(BossTimerPrefab, new Vector3(0, 0.65f, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
         }
     }
 
@@ -46,6 +47,11 @@ public class Monster : MonoBehaviour {
     {
         hero.AddCoins(5 * (Hero.level * bossFactor));
         // @todo Coins drop
+
+        if (isBoss)
+        {
+            Destroy(bossTimer);
+        }
     }
 
     // Shows the Floating Text
