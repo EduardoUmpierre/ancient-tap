@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingTextPrefab: {fileID: 1234628932250676, guid: 8e7b247cc883d3940bd97fd22f070603,
     type: 2}
+  BossTimerPrefab: {fileID: 0}
   health: 0
   maxHealth: 0
   bossFactor: 1
