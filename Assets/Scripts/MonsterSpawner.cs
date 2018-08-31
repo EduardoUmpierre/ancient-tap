@@ -54,7 +54,7 @@ public class MonsterSpawner : MonoBehaviour {
     public GameObject SpawnMob()
     {
         GameObject monster = Instantiate(Hero.level % 5 == 0 ? bossPrefab[Random.Range(0, bossPrefab.Length)] : minionPrefab[Random.Range(0, minionPrefab.Length)], new Vector3(0, 1.15f, 0), Quaternion.identity, transform);
-        monster.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        monster.GetComponent<SpriteRenderer>().sortingOrder = -1;
 
         healthBar.GetComponent<HealthBar>().SetMonster(monster.GetComponent<Monster>());
 
