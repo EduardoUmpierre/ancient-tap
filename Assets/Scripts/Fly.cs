@@ -37,8 +37,10 @@ public class Fly : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, isMovingLeft ? from : to, 1f * Time.deltaTime);
     }
 
+    //
     void OnMouseDown()
     {
-        Instantiate(AdContainerPrefab, new Vector3(0, 0, 0), Quaternion.identity, gameObject.transform.parent.transform);
+        Instantiate(AdContainerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+        Destroy(gameObject);
     }
 }
