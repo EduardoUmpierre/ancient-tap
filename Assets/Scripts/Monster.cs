@@ -68,7 +68,7 @@ public class Monster : MonoBehaviour {
         floatingText.GetComponent<TextMesh>().text = damage.ToString();
         floatingText.GetComponent<TextMesh>().color = color;
         floatingText.GetComponent<TextMesh>().fontSize = fontSize;
-        floatingText.GetComponent<Renderer>().sortingOrder = 2;
+        floatingText.GetComponent<Renderer>().sortingOrder = -1;
     }
 
     // Returns the invulnerable status

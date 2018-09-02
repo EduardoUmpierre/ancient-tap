@@ -5,9 +5,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public class SaveLoad : MonoBehaviour {
-    void Start() {
-    }
-
     //
     private static Save CreateSaveGameObject()
     {

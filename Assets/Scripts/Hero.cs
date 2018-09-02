@@ -81,9 +81,18 @@ public class Hero : MonoBehaviour {
         {
             GameObject coin = Instantiate(CoinPrefab, new Vector3(0, 1, 0), Quaternion.identity, monsterSpawner.transform);
             coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.Range(-125f, 125f), Random.Range(-50f, 50f), 0));
-            Destroy(coin, 3f);
+            StartCoroutine(DestroyAnimation(coin));
         }
     }
+
+    //
+    IEnumerator DestroyAnimation(GameObject coin)
+    {
+        yield return new WaitForSeconds(3f);
+        coin.GetComponent<Animator>().Play("CoinDestroy");
+        Destroy(coin, 0.2f);
+    }
+
 
     // Upgrades the hero status
     public bool Upgrade(string type, float amount, float cost)

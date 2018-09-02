@@ -11,7 +11,8 @@ public class AdController : MonoBehaviour {
     private Button ShowAdButton;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         Advertisement.Initialize(gameId);
         ShowAdButton = gameObject.transform.Find("WatchVideoButton").GetComponent<Button>();
 
@@ -22,7 +23,8 @@ public class AdController : MonoBehaviour {
     }
 	
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
 		if (ShowAdButton)
         {
             ShowAdButton.GetComponent<Button>().interactable = Advertisement.IsReady(placementId);

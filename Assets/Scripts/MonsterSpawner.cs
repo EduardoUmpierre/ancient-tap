@@ -8,13 +8,6 @@ public class MonsterSpawner : MonoBehaviour {
     public GameObject[] minionPrefab;
     public GameObject healthBar;
 
-    // Called zero
-    void Awake()
-    {
-        // Loads the game
-        SaveLoad.Load();
-    }
-
     // Called first
     void OnEnable()
     {
@@ -33,21 +26,10 @@ public class MonsterSpawner : MonoBehaviour {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    //
     private void Start()
     {
         SpawnMob();
-    }
-
-    //
-    void OnApplicationQuit() 
-    {
-        SaveLoad.Save();
-    }
-
-    //
-    void OnApplicationPause(bool pause)
-    {
-        SaveLoad.Save();
     }
 
     // Instantiate a new monster based on level
