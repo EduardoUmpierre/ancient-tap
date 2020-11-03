@@ -36,12 +36,6 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    // Receives damage at every click
-    private void OnMouseDown()
-    {
-        hero.Hit();
-    }
-
     // Increase the hero amount of coins after be destroyed
     private void OnDestroy()
     {
@@ -68,7 +62,6 @@ public class Monster : MonoBehaviour {
         floatingText.GetComponent<TextMesh>().text = damage.ToString();
         floatingText.GetComponent<TextMesh>().color = color;
         floatingText.GetComponent<TextMesh>().fontSize = fontSize;
-        floatingText.GetComponent<Renderer>().sortingOrder = -1;
     }
 
     // Returns the invulnerable status

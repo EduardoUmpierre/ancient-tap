@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        // Invokes the DPS function
+        // Invokes the fly
         InvokeRepeating("SpawnFly", 0, flySpawnDelay);
     }
 
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour {
                 horizontalPlacement = -4f;
             }
 
-            GameObject fly = Instantiate(FlyPrefab, new Vector3(horizontalPlacement, 3f, 0), Quaternion.identity, transform.parent);
+            GameObject fly = Instantiate(FlyPrefab, new Vector3(horizontalPlacement, 3.5f, 0), Quaternion.identity, transform.parent);
             fly.GetComponent<SpriteRenderer>().flipX = comingByLeft;
         }
     }
