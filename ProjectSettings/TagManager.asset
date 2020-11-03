@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Coin
+  - Ground
+  - Fly
   layers:
   - Default
   - TransparentFX
@@ -26,12 +29,12 @@ TagManager:
   - EnemyWeapon
   - BossWeakPoint
   - Bullet
+  - Coin
+  - Ground
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Modal
   - 
   - 
   - 
@@ -50,4 +53,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 3405993979
+    locked: 0
+  - name: Modal
+    uniqueID: 3575845309
     locked: 0

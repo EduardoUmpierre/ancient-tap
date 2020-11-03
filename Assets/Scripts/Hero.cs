@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     public static int level = 1;
-    public static int coins = 0;
-    public static int damagePerSecond = 0;
-    public static int damagePerClick = 1;
+    public static int maxLevel = 1;
+    public static float coins = 0;
+    public static float damagePerSecond = 0;
+    public static float damagePerClick = 1;
     public static float criticalChance = 0f;
     public static float criticalDamage = 2f;
     public static float goldBonus = 1f;
+
     public MonsterSpawner monsterSpawner;
+    public GameObject ExplosionPrefab;
+    public GameObject CoinPrefab;
 
     Monster monsterComponent;
     GameObject monster;
@@ -37,7 +41,7 @@ public class Hero : MonoBehaviour {
     }
 
     // Deals the damage to the monster and manage the monster respawn
-    private void Damage(int damage)
+    private void Damage(float damage)
     {
         if (damage > 0 && !monsterComponent.IsInvulnerable())
         {
@@ -54,24 +58,44 @@ public class Hero : MonoBehaviour {
             }
             else
             {
-                Destroy(monster);
+                // Updates the hero's level
+                if (level >= maxLevel)
+                {
+                    level += 1;
+                    maxLevel = level;
+                }
 
-                level += 1;
+                AddCoins(5 * (level * monsterComponent.bossFactor));
 
-                monster = monsterSpawner.SpawnMob();
-                monsterComponent = monster.GetComponent<Monster>();
+                DestroyMonster();
             }
         }
     }
 
     // Increase the amount of coins
-    public void AddCoins(int amount)
+    public void AddCoins(float amount)
     {
         coins += Mathf.CeilToInt(amount * goldBonus);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject coin = Instantiate(CoinPrefab, new Vector3(0, 1, 0), Quaternion.identity, monsterSpawner.transform);
+            coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.Range(-125f, 125f), Random.Range(-50f, 50f), 0));
+            StartCoroutine(DestroyAnimation(coin));
+        }
     }
 
+    //
+    IEnumerator DestroyAnimation(GameObject coin)
+    {
+        yield return new WaitForSeconds(3f);
+        coin.GetComponent<Animator>().Play("CoinDestroy");
+        Destroy(coin, 0.2f);
+    }
+
+
     // Upgrades the hero status
-    public bool Upgrade(string type, float amount, int cost)
+    public bool Upgrade(string type, float amount, float cost)
     {
         if (!CanUpgrade(cost))
         {
@@ -81,10 +105,10 @@ public class Hero : MonoBehaviour {
         switch (type)
         {
             case "dps":
-                IncreaseDamagePerSecond((int)amount);
+                IncreaseDamagePerSecond(amount);
                 break;
             case "dpc":
-                IncreaseDamagePerClick((int)amount);
+                IncreaseDamagePerClick(amount);
                 break;
             case "crit_chance":
                 IncreaseCriticalChance(amount);
@@ -103,19 +127,19 @@ public class Hero : MonoBehaviour {
     }
 
     // Verifies if the hero has the necessary coins amount to do the upgrade
-    private bool CanUpgrade(int cost)
+    private bool CanUpgrade(float cost)
     {
         return coins >= cost;
     }
 
     //
-    private void IncreaseDamagePerSecond(int amount) 
+    private void IncreaseDamagePerSecond(float amount) 
     {
         damagePerSecond += amount;
     }
 
     //
-    private void IncreaseDamagePerClick(int amount) 
+    private void IncreaseDamagePerClick(float amount) 
     {
         damagePerClick += amount;
     }
@@ -129,23 +153,23 @@ public class Hero : MonoBehaviour {
     //
     private void IncreaseCriticalDamage(float amount)
     {
-        criticalDamage *= amount;
+        criticalDamage += amount;
     }
 
     //
     private void IncreaseGoldBonus(float amount)
     {
-        goldBonus *= amount;
+        goldBonus += amount;
     }
 
     //
-    public int GetDamagePerSecond()
+    public float GetDamagePerSecond()
     {
         return damagePerSecond;
     }
 
     //
-    public int GetDamagePerClick()
+    public float GetDamagePerClick()
     {
         return damagePerClick;
     }
@@ -169,38 +193,23 @@ public class Hero : MonoBehaviour {
     }
 
     //
-    public void SetDamagePerSecond(int amount)
-    {
-        damagePerSecond = amount;
-    }
-
-    //
-    public void SetDamagePerClick(int amount)
-    {
-        damagePerClick = amount;
-    }
-
-    //
-    public void SetCriticalChance(float amount)
-    {
-        criticalChance = amount;
-    }
-
-    //
-    public void SetCriticalDamage(float amount)
-    {
-        criticalDamage = amount;
-    }
-
-    //
-    public void SetGoldBonus(float amount)
-    {
-        goldBonus = amount;
-    }
-
-    //
     public int GetLevel()
     {
         return level;
+    }
+
+    //
+    public void DestroyMonster()
+    {
+        // Explosion animation
+        GameObject explosion = Instantiate(ExplosionPrefab, new Vector3(0, 0.6f, 0), transform.rotation, monsterSpawner.transform);
+        Destroy(explosion, 0.5f);
+
+        // Destroys the monster
+        Destroy(monster);
+
+        // Spawns a new monster
+        monster = monsterSpawner.SpawnMob();
+        monsterComponent = monster.GetComponent<Monster>();
     }
 }

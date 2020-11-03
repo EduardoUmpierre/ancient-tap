@@ -5,13 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class Save {
     public int level;
-    public int coins;
+    public int maxLevel;
+    public float coins;
 
-    public int damagePerSecond;
-    public int damagePerClick;
+    public float damagePerSecond;
+    public float damagePerClick;
     public float criticalChance;
     public float criticalDamage;
     public float goldBonus;
 
-    public Dictionary<string, Dictionary<string, float>> shopListItems;
+    public Dictionary<string, Dictionary<string, object>> shopListItems;
 }

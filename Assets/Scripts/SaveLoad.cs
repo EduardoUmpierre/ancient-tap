@@ -5,22 +5,20 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public class SaveLoad : MonoBehaviour {
-    void Start() {
-    }
-
     //
     private static Save CreateSaveGameObject()
     {
         Save save = new Save
         {
             level = Hero.level,
+            maxLevel = Hero.maxLevel,
             coins = Hero.coins,
             damagePerSecond = Hero.damagePerSecond,
             damagePerClick = Hero.damagePerClick,
             criticalChance = Hero.criticalChance,
             criticalDamage = Hero.criticalDamage,
             goldBonus = Hero.goldBonus,
-            shopListItems = ShopController.shopListItems
+            shopListItems = ShopController.shopController
         };
 
         return save;
@@ -37,7 +35,6 @@ public class SaveLoad : MonoBehaviour {
      
     //
     public static void Load() {
-        // 1
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -45,19 +42,18 @@ public class SaveLoad : MonoBehaviour {
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
-            // 4
             Hero.level = save.level;
+            Hero.maxLevel = save.maxLevel;
             Hero.coins = save.coins;
             Hero.damagePerSecond = save.damagePerSecond;
             Hero.damagePerClick = save.damagePerClick;
             Hero.criticalChance = save.criticalChance;
             Hero.criticalDamage = save.criticalDamage;
             Hero.goldBonus = save.goldBonus;
-            // ShopController.shopListItems = save.shopListItems;
 
-            foreach (KeyValuePair<string, Dictionary<string, float>> entry in save.shopListItems)
+            foreach (KeyValuePair<string, Dictionary<string, object>> entry in save.shopListItems)
             {
-                ShopController.shopListItems[entry.Key] = entry.Value;
+                ShopController.shopController[entry.Key] = entry.Value;
             }
 
             Debug.Log("Game Loaded");

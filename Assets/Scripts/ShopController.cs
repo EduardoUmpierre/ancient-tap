@@ -4,108 +4,140 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class ShopController : MonoBehaviour {
-    public static Dictionary<string, Dictionary<string, float>> shopListItems = new Dictionary<string, Dictionary<string, float>>();
+public class ShopController : MonoBehaviour
+{
+  public static Dictionary<string, Dictionary<string, object>> shopController = new Dictionary<string, Dictionary<string, object>>();
+  public GameObject shopListPrefab;
+  public GameObject shopControllerContainer;
 
-    Hero hero;
-    GameObject dpsButton;
-    GameObject dpcButton;
-    GameObject critChanceButton;
-    GameObject critDamageButton;
-    GameObject goldBonusButton;
+  Hero hero;
+  Dictionary<string, object> shopListItems = new Dictionary<string, object>();
 
-    // Use this for initialization
-    void Start ()
+  // Use this for initialization
+  void Start()
+  {
+    if (shopController.Count == 0)
     {
-        if (shopListItems.Count == 0)
+      SetUpShopListItems();
+    }
+
+    GenerateShopListItems();
+
+    hero = GameObject.Find("Hero").GetComponent<Hero>();
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    UpdateItems();
+  }
+
+  //
+  void ButtonClick(string type)
+  {
+    float total = (float)shopController[type]["total"];
+    float level = (float)shopController[type]["level"];
+    float amount = (float)shopController[type]["amountPerLevel"];
+
+    if (hero.Upgrade(type, amount, GetCost(level)))
+    {
+      shopController[type]["level"] = level + 1;
+      shopController[type]["total"] = total + (float)shopController[type]["displayAmountPerLevel"];
+    }
+  }
+
+  //
+  private int GetCost(float level)
+  {
+    return Mathf.CeilToInt(level * (int)(level * 10));
+  }
+
+  // Initialize the shop list items
+  private void SetUpShopListItems()
+  {
+    shopController.Add("dps", SetUpItemConfiguration("Timety", "DPS", "", 1f, 1f, 1f, 0f));
+    shopController.Add("dpc", SetUpItemConfiguration("Hitter", "DPC", "", 1f, 1f, 1f, 0f));
+    shopController.Add("crit_chance", SetUpItemConfiguration("Storment", "Crit Chance", "%", 1f, 0.5f, 0.5f, 0f));
+    shopController.Add("crit_damage", SetUpItemConfiguration("Brutus", "Crit Damage", "%", 1f, 0.15f, 15f, 0f));
+    shopController.Add("gold_bonus", SetUpItemConfiguration("Yggdrasill of Fortune", "Gold Bonus", "%", 1f, 0.05f, 5f, 0f));
+  }
+
+  // Shop list item setup
+  private Dictionary<string, object> SetUpItemConfiguration(string name, string description, string type, float level, float amountPerLevel, float displayAmountPerLevel, float total)
+  {
+    Dictionary<string, object> itemConfiguration = new Dictionary<string, object>
         {
-            SetUpShopListItems();
-        }
-
-        hero = GameObject.Find("Hero").GetComponent<Hero>();
-        dpsButton = GameObject.Find("Shop_01_DPS_button");
-        dpcButton = GameObject.Find("Shop_01_DPC_button");
-        critChanceButton = GameObject.Find("Shop_01_CRITCHANCE_button");
-        critDamageButton = GameObject.Find("Shop_01_CRITDAMAGE_button");
-        goldBonusButton = GameObject.Find("Shop_01_GOLDBONUS_button");
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        UpdateButtonText(dpsButton, shopListItems["dps"]["level"]);
-        UpdateButtonText(dpcButton, shopListItems["dpc"]["level"]);
-        UpdateButtonText(critChanceButton, shopListItems["crit_chance"]["level"]);
-        UpdateButtonText(critDamageButton, shopListItems["crit_damage"]["level"]);
-        UpdateButtonText(goldBonusButton, shopListItems["gold_bonus"]["level"]);
-    }
-
-    //
-    public void ButtonClick(string type)
-    {
-        float level = shopListItems[type]["level"];
-        float amount = shopListItems[type]["amountPerLevel"];
-
-        if (hero.Upgrade(type, amount, GetCost(level)))
-        {
-            shopListItems[type]["level"] = level + 1;
-        }  
-    }
-
-    //
-    private int GetCost(float level)
-    {
-        return Mathf.CeilToInt(level * (int) ((level * 1.5) * 10));
-    }
-
-    //
-    private void UpdateButtonText(GameObject button, float level)
-    {
-        Button buttonComponent = button.GetComponent<Button>();
-        int cost = GetCost(level);
-
-        button.GetComponentInChildren<Text>().text = "Lvl " + level.ToString() + " - $" + cost.ToString();
-
-        if (cost > Hero.coins)
-        {
-            buttonComponent.interactable = false;
-        } else
-        {
-            buttonComponent.interactable = true;
-        }
-    }
-
-    //
-    private void SetUpShopListItems()
-    {
-        shopListItems.Add("dps", SetUpItemConfiguration(1f, 1f));
-        shopListItems.Add("dpc", SetUpItemConfiguration(1f, 1f));
-        shopListItems.Add("crit_chance", SetUpItemConfiguration(1f, 0.5f));
-        shopListItems.Add("crit_damage", SetUpItemConfiguration(1f, 1.15f));
-        shopListItems.Add("gold_bonus", SetUpItemConfiguration(1f, 1.025f));
-    }
-
-    //
-    private Dictionary<string, float> SetUpItemConfiguration(float level, float amountPerLevel)
-    {
-        Dictionary<string, float> itemConfiguration = new Dictionary<string, float>
-        {
+            { "name", name },
+            { "description", description },
+            { "type", type },
             { "level", level },
-            { "amountPerLevel", amountPerLevel }
+            { "amountPerLevel", amountPerLevel },
+            { "displayAmountPerLevel", displayAmountPerLevel },
+            { "total", total }
         };
 
-        return itemConfiguration;
-    }
+    return itemConfiguration;
+  }
 
-    //
-    public Dictionary<string, Dictionary<string, float>> GetShopListItems()
-    {
-        return shopListItems;
-    }
+  // shopController getter
+  public static Dictionary<string, Dictionary<string, object>> GetshopController()
+  {
+    return shopController;
+  }
 
-    //
-    public void SetShopListItems(Dictionary<string, Dictionary<string, float>> items)
+  // shopController setter
+  public void SetshopController(Dictionary<string, Dictionary<string, object>> items)
+  {
+    shopController = items;
+  }
+
+  // Generates the shop list items
+  private void GenerateShopListItems()
+  {
+    foreach (KeyValuePair<string, Dictionary<string, object>> entry in shopController)
     {
-        shopListItems = items;
+      GameObject shopItem = Instantiate(shopListPrefab, shopControllerContainer.transform);
+      shopItem.transform.Find("Name").GetComponent<Text>().text = entry.Value["name"].ToString();
+      shopItem.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => ButtonClick(entry.Key));
+
+      UpdateItemInformation(shopItem.transform.Find("Information").GetComponent<Text>(), entry.Key);
+
+      shopListItems.Add(entry.Key, shopItem);
     }
+  }
+
+  //
+  private void UpdateItems()
+  {
+    foreach (KeyValuePair<string, Dictionary<string, object>> entry in shopController)
+    {
+      GameObject item = (GameObject)shopListItems[entry.Key];
+      GameObject button = item.transform.Find("Button").gameObject;
+      Text information = item.transform.Find("Information").GetComponent<Text>();
+
+      UpdateButtonText(button, entry.Key);
+      UpdateItemInformation(information, entry.Key);
+    }
+  }
+
+  //
+  private void UpdateItemInformation(Text textComponent, string type)
+  {
+    textComponent.text = "Lv. " + shopController[type]["level"].ToString() + "\n" + shopController[type]["description"].ToString() + ": +" + shopController[type]["total"].ToString() + shopController[type]["type"];
+  }
+
+  //
+  private void UpdateButtonText(GameObject button, string type)
+  {
+    Button buttonComponent = button.GetComponent<Button>();
+    Text buttonTextComponent = button.transform.Find("Text").GetComponent<Text>();
+    int cost = GetCost((float)shopController[type]["level"]);
+
+    button.GetComponentInChildren<Text>().text = "$ " + cost.ToString() + "\n" + shopController[type]["description"] + " +" + shopController[type]["displayAmountPerLevel"] + shopController[type]["type"];
+
+    bool isInteractable = cost <= Hero.coins;
+    byte opacity = isInteractable ? (byte)255 : (byte)100;
+    buttonComponent.interactable = isInteractable;
+    buttonTextComponent.color = new Color32(255, 209, 165, opacity);
+  }
 }

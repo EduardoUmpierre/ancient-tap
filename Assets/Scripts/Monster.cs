@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     public GameObject FloatingTextPrefab;
-    public GameObject healthBarPrefab;
-    public int health = 999;
-    public int maxHealth = 999;
-    public int bossFactor;
+    public GameObject BossTimerPrefab;
+    public float health = 999;
+    public float maxHealth = 999;
+    public string enemyName;
+    public int bossFactor = 5;
 
     Hero hero;
-    bool isBoss = false;
-    bool isInvulnerable = true;
-    GameObject healthBar;
+    GameObject bossTimer;
+    bool isInvulnerable;
+    bool isBoss;
 
-    //
+    // Turns the monster invulnerable
     void Awake()
     {
         isInvulnerable = true;
@@ -23,45 +24,37 @@ public class Monster : MonoBehaviour {
     // Use this for initialization
     void Start() {
         hero = GameObject.Find("Hero").GetComponent<Hero>();
-
         isBoss = hero.GetLevel() % 5 == 0;
-        maxHealth = health = hero.GetLevel() * (bossFactor * 5);
 
-        Debug.Log("===============================");
-        Debug.Log("Max health: " + maxHealth);
-        Debug.Log("Health: " + health);
-        Debug.Log("===============================");
-
-        healthBar = Instantiate(healthBarPrefab, new Vector3(0, isBoss ? 3.5f : 2.5f, 0), Quaternion.identity, transform);
-        healthBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        maxHealth = health = (hero.GetLevel() + 1) * (hero.GetLevel() + 2) * (isBoss ? bossFactor : 1);
 
         isInvulnerable = false;
-    }
 
-    // Receives damage at every click
-    private void OnMouseDown()
-    {
-        hero.Hit();
+        if (isBoss)
+        {
+            bossTimer = Instantiate(BossTimerPrefab, new Vector3(0, 0.65f, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+        }
     }
 
     // Increase the hero amount of coins after be destroyed
     private void OnDestroy()
     {
-        hero.AddCoins(5 * (Hero.level * bossFactor));
-
-        Destroy(healthBar);
+        if (isBoss)
+        {
+            Destroy(bossTimer);
+        }
     }
 
     // Shows the Floating Text
-    public void ShowFloatingText(int damage, bool isCriticalHit) {
+    public void ShowFloatingText(float damage, bool isCriticalHit) {
         Color32 color;
         int fontSize = 30;
 
         if (isCriticalHit) {
-            color = new Color32(218, 191, 0, 255); // Yellow
+            color = new Color32(228, 200, 0, 255); // Yellow
             fontSize = 40;
         } else {
-            color = new Color32(218, 0, 0, 255); // Red
+            color = new Color32(190, 0, 0, 255); // Red
         }
 
         // Creates the floating text
@@ -69,10 +62,9 @@ public class Monster : MonoBehaviour {
         floatingText.GetComponent<TextMesh>().text = damage.ToString();
         floatingText.GetComponent<TextMesh>().color = color;
         floatingText.GetComponent<TextMesh>().fontSize = fontSize;
-        floatingText.GetComponent<Renderer>().sortingOrder = 2;
     }
 
-    //
+    // Returns the invulnerable status
     public bool IsInvulnerable()
     {
         return isInvulnerable;
